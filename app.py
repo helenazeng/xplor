@@ -13,7 +13,6 @@ def home():
 	data = response.json()
 	return render_template('home.html', token=data)
 
-	
 
 @app.route('/price', methods=['GET'])
 def price(): 
@@ -42,3 +41,4 @@ def price():
 
 if __name__ == '__main__':
     app.run(debug=False)
+
