@@ -117,6 +117,37 @@ def home():
 	response = requests.post(url, data=json.dumps(params), headers=headers)
 	data = response.json()
 	return render_template('home.html',token=data)
+	
+@app.route('/expedia')
+def expedia():
+	api_key = "uoxquw9WjwGe6XrIMr4LIydfvdD6PvET"
+	url = 'http://terminal2.expedia.com/x/hotels?location=42.284707,-83.741527&radius=5km&apikey=' + api_key
+
+
+	response = app.requests_session.get(
+	                                    url,
+	                                    )
+	data = response.json()
+	if response.status_code != 200:
+		return 'There was an error', response.status_code
+
+	for item in range(5):
+		binary = response.content
+		output = json.loads(binary)
+		location = (output['HotelInfoList'])['HotelInfo'][item]['Location']
+		hotelID = (output['HotelInfoList'])['HotelInfo'][item]['HotelID']
+		starRating = (output['HotelInfoList'])['HotelInfo'][item]['StarRating']
+		price = (output['HotelInfoList'])['HotelInfo'][item]['FeaturedOffer']['Price']['TotalRate']['Value']
+
+		my_dict = {
+			'location': location,
+			'hotelID': hotelID,
+			'starRating': starRating,
+			'price': price
+		}
+	return render_template(
+	                       'home.html', token=my_dict
+	                       )
 
 
 
