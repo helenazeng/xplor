@@ -1,0 +1,14 @@
+{
+    "access_token_url": "https://login.uber.com/oauth/token",
+    "authorize_url": "https://login.uber.com/oauth/authorize",
+    "base_url": "https://login.uber.com/",
+    "scopes": ["profile", "history_lite"],
+    "name": "Sample app",
+    "base_uber_url": "https://api.uber.com/v1/",
+    "base_uber_url_v1_1" : "https://api.uber.com/v1.1/",
+    "start_latitude": "42.284707",
+    "start_longitude":  "-83.741527",
+    "end_latitude": "42.216172",
+    "end_longitude": "-83.355384",
+    "server_token": "gDVK4AzgzSuBcvA5t8oG6P7BfdtdBveGVWGWt1Kq"
+}
