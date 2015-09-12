@@ -127,27 +127,34 @@ def expedia():
 	response = app.requests_session.get(
 	                                    url,
 	                                    )
+
 	data = response.json()
-	if response.status_code != 200:
-		return 'There was an error', response.status_code
 
-	for item in range(5):
-		binary = response.content
-		output = json.loads(binary)
-		location = (output['HotelInfoList'])['HotelInfo'][item]['Location']
-		hotelID = (output['HotelInfoList'])['HotelInfo'][item]['HotelID']
-		starRating = (output['HotelInfoList'])['HotelInfo'][item]['StarRating']
-		price = (output['HotelInfoList'])['HotelInfo'][item]['FeaturedOffer']['Price']['TotalRate']['Value']
+	with open("hotel.json", 'w') as i:
+		for item in range(5):
+			binary = response.content
+			output = json.loads(binary)
+			location = (output['HotelInfoList'])['HotelInfo'][item]['Location']
+			hotelID = (output['HotelInfoList'])['HotelInfo'][item]['HotelID']
+			starRating = (output['HotelInfoList'])['HotelInfo'][item]['StarRating']
+			price = (output['HotelInfoList'])['HotelInfo'][item]['FeaturedOffer']['Price']['TotalRate']['Value']
+			buy = (output['HotelInfoList'])['HotelInfo'][item]['DetailsUrl']
+			image = (output['HotelInfoList'])['HotelInfo'][item]['ThumbnailUrl']
+			dictionary = {
+				'location': location,
+				'hotelID': hotelID,
+				'starRating': starRating,
+				'price': price,
+				'buy': buy,
+				'image': image
+			}
 
-		my_dict = {
-			'location': location,
-			'hotelID': hotelID,
-			'starRating': starRating,
-			'price': price
-		}
-	return render_template(
-	                       'home.html', token=my_dict
-	                       )
+
+			json.dump(dictionary, i , ensure_ascii=False)
+
+			my_dict.update(dictionary)
+
+	return render_template('hotel.json', taken=my_dict)
 
 
 
