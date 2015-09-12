@@ -10,7 +10,49 @@ app = Flask(__name__, static_folder='static', static_url_path='')
 app.requests_session = requests.Session()
 app.secret_key = os.urandom(24)
 
+with open('config.json') as f:
+	config = json.load(f)
+
+
 # use decorators to link the function to a url
+@app.route('/health',methods=['GET'])
+def health():
+	"""Check the status of the app"""
+	return ';-)'
+
+@app.route('/uberprice')
+def uberprice():
+	# Gives estimates for time, 
+	url = config.get('base_uber_url') + 'estimates/price'
+	params = {
+		'start_latitude': config.get('start_latitude'),
+		'start_longitude': config.get('start_longitude'),
+		'server_token': config.get('server_token'),
+		'end_latitude': config.get('end_latitude'),
+		'end_longitude': config.get('end_longitude'),
+	}
+
+	response = app.requests_session.get(
+	                                    url,
+	                                    params=params,
+	                                    )
+	if response.status_code != 200:
+		return 'There was an error', response.status_code
+	binary = response.content
+	output = json.loads(binary)
+	uberX = output['prices'][0]
+	uberXL = output['prices'][1]
+	uberSELECT = output['prices'][2]
+
+	return render_template(
+	                       'home.html',
+	                       endpoint='products',
+	                       uberx=uberX,
+	                       uberxl=uberXL,
+	                       uberselect=uberSELECT,
+	                       )
+
+
 @app.route('/')
 def home():
 	# parameters = {
@@ -79,4 +121,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
