@@ -169,6 +169,34 @@ def flights():
 
 	return render_template('hotel.json', token=my_dict)
 
+# @app.rout('/payment')
+# def payment():
+
+# 	class ReceiveResponse:
+
+#     	def __init__(self, fee_percent, dest, input, callback):
+#         self.fee_percent = fee_percent
+#         self.destination_address = dest
+#         self.input_address = input
+#         self.callback_url = callback
+
+# 		def receive(dest_addr, callback, api_code = None):
+#     """Call the 'api/receive' endpoint and create a forwarding address.
+    
+#     :param str dest_addr: destination address where the payment should be sent
+#     :param str callback: callback URI that will be called upon payment
+#     :param str api_code: Blockchain.info API code (optional)
+#     :return: an instance of :class:`ReceiveResponse` class
+#     """
+    
+# 	    	params = { 'method': 'create', 'address': '1NDpZ2wyFekVezssSXv2tmQgmxcoHMUJ7u ', 'callback': '/api/receive?method=create&cors=true&format=plain&address=1NDpZ2wyFekVezssSXv2tmQgmxcoHMUJ7u&shared=false&callback=http%3A%2F%2F45.79.164.166%2Fpayment'}
+# 	    	resp = util.call_api('api/receive', params)
+# 	    	json_resp = json.loads(resp)
+# 	    	payment_response = ReceiveResponse(json_resp['fee_percent'],
+# 	                                        json_resp['destination'],
+# 	                                        json_resp['input_address'],
+# 	                                        json_resp['callback_url'])
+# 	    	return payment_response
 
 if __name__ == '__main__':
     app.run(debug=True)
