@@ -1,0 +1,1055 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>xplor.xyz</title>
+  
+  <style type='text/css'>
+    html, body {
+    font-family:'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    box-sizing: border-box;
+    border-width: 0px;
+    margin: 0px;
+    padding: 0px;
+    transition: all 1s;
+    animation-name: comeinBody;
+    animation-duration: 1s;
+    overflow: hidden;
+}
+@keyframes comeinBody {
+    0% {
+        top:-2000px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+@keyframes comeinCard {
+    from {
+        transform: scale(0.01);
+    }
+    to {
+        transform: scale(1.0);
+    }
+}
+.logoTop{
+    padding-top: 15px;
+    width: 30%;
+    height: 15%;
+}
+.logoSubText{
+    line-height: 14px;
+    margin: 5px auto;
+    color:#2447B2;
+    
+}
+.topCell > a {
+    text-decoration: none;
+    color: black;
+    /*margin-left: 20px;*/
+}
+.mainTable {
+    position: absolute;
+    /* MAY BE REMOVED */
+    margin: auto;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    max-width: 1000px;
+    min-width: 300px;
+    min-height: 500px;
+    box-sizing: content-box;
+}
+.topCell {
+    height: 15%;
+    text-align: center;
+}
+.middleCell {
+    text-align: center;
+    height: 100%;
+    box-shadow: inset 0px 0px 10px lightblue;
+}
+#cardHolder {
+    overflow: auto;
+    height: 100%;
+}
+.bottomCell {
+    height: 20%;
+    bottom: 0px;
+    text-align:center;
+}
+/*
+ *
+ * LOADING STYLES
+ *
+ */
+ .sk-cube-grid {
+    width: 40px;
+    height: 40px;
+    margin: auto;
+}
+.loadingText {
+    padding-top: 15px;
+    animation: sk-loadingText 1.3s infinite ease-in-out;
+}
+/* DON'T MESS WITH THE REST OF THE LOADING STYLES */
+ .sk-cube-grid .sk-cube {
+    width: 33%;
+    height: 33%;
+    background-color: darkgray;
+    float: left;
+    -webkit-animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+    animation: sk-cubeGridScaleDelay 1.3s infinite ease-in-out;
+}
+.sk-cube-grid .sk-cube1 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+.sk-cube-grid .sk-cube2 {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+.sk-cube-grid .sk-cube3 {
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+}
+.sk-cube-grid .sk-cube4 {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+.sk-cube-grid .sk-cube5 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+.sk-cube-grid .sk-cube6 {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+.sk-cube-grid .sk-cube7 {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+.sk-cube-grid .sk-cube8 {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+.sk-cube-grid .sk-cube9 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+@keyframes sk-loadingText {
+    0%, 100% {
+        color: inherit;
+    }
+    50% {
+        color: lightgray;
+    }
+}
+@-webkit-keyframes sk-cubeGridScaleDelay {
+    0%, 70%, 100% {
+        -webkit-transform: scale3D(1, 1, 1);
+        transform: scale3D(1, 1, 1);
+    }
+    35% {
+        -webkit-transform: scale3D(0, 0, 1);
+        transform: scale3D(0, 0, 1);
+    }
+}
+@keyframes sk-cubeGridScaleDelay {
+    0%, 70%, 100% {
+        -webkit-transform: scale3D(1, 1, 1);
+        transform: scale3D(1, 1, 1);
+    }
+    35% {
+        -webkit-transform: scale3D(0, 0, 1);
+        transform: scale3D(0, 0, 1);
+    }
+}
+/*
+ *
+ * STYLE FOR CARDS AND THEIR CHILDREN
+ *
+ */
+ .card {
+    width: 575px;
+    min-height: 120px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 0px solid black;
+    margin: 10px auto;
+    box-shadow: 0px 0px 5px gray;
+    animation-name: comeinCard;
+    animation-duration: 0.5s;
+    transition: all 0.3s;
+}
+ .miniCard {
+    width: 575px;
+    height: 40px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 0px solid black;
+    box-shadow: 0px 0px 5px gray;
+    animation-name: comeinCard;
+    animation-duration: 0.5s;
+    transition: all 0.3s;
+     margin: 0 auto;
+}
+.miniCard h2 {
+    display:none;
+}
+.miniCard h3 {
+    font-size: 20px;
+    line-height: 10px;
+}
+.card:nth-of-type(1) {
+    height: 140px;
+    width: 575px;
+}
+.selectedCard {
+    box-shadow: 0px 0px 5px blue;
+}
+.deletedCard {
+    height: 35px;
+    line-height: 35px;
+}
+.undoDeleteCard {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.card > table {
+    width: 100%;
+    height: 100%;
+    text-align:center;
+}
+.cardFirstCell {
+    width: 15%;
+}
+.cardSecondCell {
+    text-align: left;
+}
+.cardThirdCell {
+    width: 30%;
+}
+.xAtTop {
+    display: inline;
+    color:gray;
+    cursor: pointer;
+    transition: all 0.4s;
+    z-index:5;
+}
+.txAtTop:hover .xAtTop, .xAtTop:hover {
+    color: red;
+    transform: rotate(360deg);
+}
+.txAtTop {
+    position: relative;
+    cursor: pointer;
+    top: -12px;
+    right: -5px;
+    color: white;
+    transition: all 0.4s;
+    z-index:5;
+}
+.txAtTop:hover {
+    color:red;
+}
+.cardPrice {
+    font-weight: 600;
+}
+.finalPrice:before, .cardPrice:before {
+    content:"$";
+}
+.finalPrice:empty:before {
+    content:"";
+}
+.changeDivClass {
+    background-color:gray;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 15px;
+    width: 60%;
+    min-width: 70px;
+    max-width: 130px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    overflow: hidden;
+}
+@keyframes bounceHover {
+    0% {
+        transform: scale(1.1);
+        opacity: 1
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: .7;
+    }
+    60% {
+        transform: scale(0.9);
+        opacity: 1
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+.changeDivIsBig {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    max-width: 1000000px;
+    height: 90%;
+    overflow: auto;
+    z-index:50;
+}
+.changeDivIsBig > table {
+    width: 100%;
+    height: 100%;
+}
+.thirdSubCardRow {
+    float: right;
+}
+.closeChangeDiv {
+    display: inline-block;
+    background-color:red;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 15px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 200px;
+    margin-left: 5px;
+}
+.continueButtonActive {
+    background-color: blue;
+}
+.continueDivButton {
+    display: inline-block;
+    background-color:darkgray;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 15px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 200px;
+    margin-left: 5px;
+}
+.firstSubCardRow:nth-child(2) {
+    float: right;
+}
+/*
+ *
+ * STYLE FOR BAD BROWSER INFO
+ *
+ */
+ #bad-browser {
+    position:fixed;
+    top:88%;
+    left:0px;
+    height:12%;
+    width:100%;
+    background-color: #FF6666;
+    margin:0px;
+    padding:3%;
+    overflow:hidden;
+    border: 1% solid red;
+    z-index:10;
+    -webkit-animation: FadeOut 5s linear forwards;
+    animation: FadeOut 5s linear forwards;
+}
+@-webkit-keyframes FadeOut {
+    0% {
+        top: 88%;
+    }
+    90% {
+        top: 88%;
+    }
+    100% {
+        top: 105%;
+    }
+}
+/*
+ *
+ * STYLE FOR LAPTOPS (HOVER STYLES)
+ *
+ */
+ @media (min-width: 600px) {
+    .closeChangeDiv:hover {
+        animation: bounceHover 0.4s;
+        background-color: lightgray;
+        transform: scale(1.01);
+        border: 2px solid red;
+        box-shadow: 0px 0px 2px 2px lightgray;
+    }
+    .changeDivClassHover:hover {
+        animation: bounceHover 0.4s;
+        background-color: lightgray;
+        transform: scale(1.01);
+        border: 2px solid darkgray;
+        box-shadow: 0px 0px 2px 2px lightgray;
+    }
+    .continueDivButtonActive:hover {
+        animation: bounceHover 0.4s;
+        background-color: lightgray;
+        transform: scale(1.01);
+        border: 2px solid blue;
+        box-shadow: 0px 0px 2px 2px lightgray;
+    }
+    .card:hover {
+        box-shadow: 0px 0px 10px blue;
+    }
+}
+/*
+ *
+ * STYLE FOR TOAST
+ *
+ */
+ #toast {
+    position: fixed;
+    background-color:white;
+    border: 2px solid gray;
+    box-shadow: 0px 0px 100px black;
+    box-sizing: border-box;
+    margin: auto;
+    margin-top: 50px;
+    text-align: left;
+    width: 90%;
+    max-width: 400px;
+    min-height: 250px;
+    left:0;
+    right:0;
+    padding: 20px;
+    animation: zoomIn 0.4s;
+    z-index: 1000;
+}
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.01);
+    }
+    100% {
+        transform: scale (1.00);
+    }
+}
+#toast > table {
+    width: 100%;
+    height: 100%;
+}
+.toastButtons {
+    float: right;
+    display: inline-block;
+    height: 40px;
+    width: 100px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 40px;
+    cursor: pointer;
+}
+#toastCancel {
+    background-color: red;
+}
+#toastConfirm {
+    background-color: blue;
+}
+.hidden {
+    display: none;
+}
+.showing {
+    display: inline;
+}
+.currencySymbol:before {
+    content:"$";
+}
+/*
+ *
+ * Style for checkbox
+ *
+ */
+ .dCBX {
+    display: none;
+}
+.sCBX {
+    display: inline-block;
+    box-sizing: content-box;
+    width: 16px;
+    height: 16px;
+    border: 0px solid gray;
+    background-color: transparent;
+    transition: all 0.2s;
+}
+.lCBX {
+    color: black;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.dCBX:checked + .lCBX {
+    color: gray;
+}
+#cash4us {
+    color:black;
+    height: 20px;
+    width: 50px;
+}
+#bottomCenter {
+    display: inline-block;
+    background-color: lightgray;
+    width: 40%;
+    max-width: 300px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+    line-height: 40px;
+    overflow: hidden;
+}
+.cardOneTable {
+    width: 100%;
+    height 100%;
+    table-layout:fixed;
+    text-align: left;
+}
+.miniLogo {
+    float: left;
+    padding: 10px;
+    width: 30px;
+    height: 30px;
+}
+.miniLogo2 {
+    float: left;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    border:1px solid black;
+    border-radius: 5px;
+}
+.colOneTop {
+    text-align:right;
+}
+.colThreeTop {
+}
+  </style>
+  
+
+
+
+<script type='text/javascript'>//<![CDATA[
+window.onload=function(){
+/* not testing */
+var USERitinerary = {
+    isRoundTrip: true
+};
+var fakeCardInfo = {
+    logoSrc: "https://installerfinder.energysavingtrust.org.uk/images/ImagePlaceholderSmall.png",
+    itemURL: "http://someshit.com",
+    type: "flight",
+    activeEdit: true,
+    selected: true,
+    startTime: 1234567890,
+    endTime: 1234567890,
+    heading: "heading",
+    subText: "subText",
+    price: "150",
+    mini: false
+};
+function isMobile() {
+    var index = navigator.appVersion.indexOf("Mobile");
+    return (index > -1);
+}
+
+/* purely for testing */
+var viewPortTag = document.createElement('meta');
+viewPortTag.id = "viewport";
+viewPortTag.name = "viewport";
+viewPortTag.content = "width=device-width, height=device-height, initial-scale=1.0";
+document.getElementsByTagName('head')[0].appendChild(viewPortTag);
+
+/*
+ *
+ *  Setup
+ *
+ */
+document.getElementsByClassName("middleCell")[0].innerHTML = "<div id=\"cardHolder\"></div>";
+
+document.getElementById("cardHolder").appendChild(babyCardMaker("topCardForInfo"));
+getIP();
+document.getElementById("cardHolder").appendChild(makeLoader("Fetching your itinerary"));
+
+
+document.getElementsByClassName("middleCell")[0].addEventListener("click", cardHolderClickHandler, false);
+
+
+setTimeout(function () {
+    document.getElementById("idToDeleteTheLoader").parentNode.removeChild(document.getElementById("idToDeleteTheLoader"));
+    document.getElementById("idToDeleteThisToo").parentNode.removeChild(document.getElementById("idToDeleteThisToo"));
+
+    document.getElementById("cardHolder").appendChild(cardMaker(fakeCardInfo));
+    document.getElementById("cardHolder").appendChild(cardMaker(fakeCardInfo));
+    document.getElementById("cardHolder").appendChild(cardMaker(fakeCardInfo));
+    document.getElementById("cardHolder").appendChild(cardMaker(fakeCardInfo));
+    document.getElementById("cardHolder").appendChild(cardMaker(fakeCardInfo));
+    updateBottom();
+}, 6000);
+
+/* real js starts here */
+/*
+ *
+ *  Script to check browser
+ *
+ */
+try {
+    if (document.addEventListener !== undefined) {
+        var bb = document.getElementById("bad-browser");
+        bb.parentNode.removeChild(bb);
+    } else {
+        // display a banner for old IE (it'll still be there)
+        if (document.getElementById("bad-browser")) {
+            document.getElementById("bad-browser").innerHTML = "You're using an outdated broswer, so this page will not look right.";
+        }
+    }
+} catch (e) {
+    console.error(e.message);
+    alert("The page has encountered an unexpected script error while the document was loading.  This is usually due to an uncommon or outdated browser. The rest of the scripts will try to run, but the page may look completely wrong.");
+}
+/*
+ *
+ *  Script to fix currency symbol
+ *   - doing in in JS
+ *
+ */
+function updateBottom() {
+    var totalPrice = sumOfPrices();
+    if (document.getElementsByClassName("finalPrice").length){
+        document.getElementsByClassName("finalPrice")[0].innerHTML = addCommas(totalPrice);
+    }else{
+        var txt = document.createTextNode(addCommas(totalPrice));
+        var obj = document.createElement("span");
+        obj.dataPrice = totalPrice;
+        obj.className = "finalPrice";
+        obj.appendChild(txt);
+        document.getElementById("bottomCenter").appendChild(obj);
+        document.getElementById("bottomCenter").addEventListener("click", function1, false);
+    }
+    function function1() {
+        toast("Confirm Purchase", "<div style=\"float:right;\"><p>" + addCommas(totalPrice) + "</p><span>+</span><input type=\"tel\" min=\"0\" id=\"inputForXplor\"/> for xplor</label><p  id=\"totalPOnCheckout\"></p></div>", "Go back", "Checkout", continueCheckout, undefined);
+        if (!isMobile()) {
+            document.getElementById("inputForXplor").value = "2.0";
+            document.getElementById("inputForXplor").type = "number";
+        }
+
+        function refreshTotalCheckout() {
+            document.getElementById("totalPOnCheckout").innerHTML = addCommas(totalPrice + parseFloat(document.getElementById("inputForXplor").value));
+        }
+        document.getElementById("inputForXplor").addEventListener("change", refreshTotalCheckout);
+        refreshTotalCheckout();
+    }
+}
+
+function continueCheckout() {
+    alert("Thank you for using our service.  We aren't processing purchases yet, but we hope to in the near future!  Come back in a month.");
+}
+
+function sumOfPrices() {
+    var eachActivePrice = document.getElementsByClassName("activeActualPrice");
+    var runningSum = 0;
+    for (var k = 0; k < eachActivePrice.length; k++) {
+        runningSum += parseFloat(eachActivePrice[k].dataPrice);
+    }
+    return (runningSum);
+}
+/*
+ *
+ *  Script to make loading thingy
+ *
+ */
+
+function makeLoader(text) {
+    var fragment = document.createDocumentFragment();
+    var outerDiv = document.createElement("div");
+    outerDiv.className = "sk-cube-grid";
+    outerDiv.id = "idToDeleteTheLoader";
+    for (var k = 0; k < 9; k++) {
+        var innerDiv = document.createElement("div");
+        innerDiv.className = "sk-cube sk-cube" + (1 + k);
+        outerDiv.appendChild(innerDiv);
+    }
+    fragment.appendChild(outerDiv);
+    var loadingTextObj = document.createElement("div");
+    var loadingTextTxt = document.createTextNode(text);
+    loadingTextObj.appendChild(loadingTextTxt);
+    loadingTextObj.id = "idToDeleteThisToo";
+    loadingTextObj.className = "loadingText";
+    fragment.appendChild(loadingTextObj);
+    return fragment;
+}
+
+/*
+ *
+ *  Script to handle cardHolder clicks
+ *   - for expanding cards
+ *
+ */
+var saveOldInnerHTML;
+
+function cardHolderClickHandler(evt) {
+    if (evt.target.className.indexOf("closeChangeDiv") > -1) {
+        evt.target.parentNode.parentNode.parentNode.parentNode.className = "changeDivClass changeDivClassHover";
+        evt.target.parentNode.parentNode.parentNode.parentNode.innerHTML = saveOldInnerHTML;
+    } else if (evt.target.className.indexOf("changeDivClass") > -1) {
+        // Handle clicking on the change buttons from cards
+        if (evt.target.className.indexOf("changeDivIsBig") == -1) {
+            evt.target.className = "changeDivClass changeDivIsBig";
+            saveOldInnerHTML = evt.target.innerHTML;
+            evt.target.innerHTML = "";
+            evt.target.appendChild(switchCardsFrameMaker("flight", []));
+        }
+    }
+    if (evt.target.parentNode.parentNode.parentNode.className.indexOf("makeSelection") > -1) {
+        // evt.target has been selected from a sub list
+    }
+    if (evt.target.className.indexOf("AxAtTop") > -1) {
+        var tmpstring;
+        if (evt.target.myCardType) {
+            tmpstring = " " + evt.target.myCardType;
+        } else {
+            tmpstring = "";
+        }
+        toast("Are you sure?", "Do you really want to delete this" + tmpstring + "?", "Cancel", "Delete", deleteNode, evt.target);
+    }
+    if (evt.target.className.indexOf("undoDeleteCard") > -1) {
+        var card = evt.target.parentNode;
+        card.className = "card selectedCard";
+        card.innerHTML = card.dataOldHTML;
+        updateBottom();
+    }
+
+}
+
+/*
+ *
+ * Script to semi-delete cards
+ *
+ */
+function deleteNode(node) {
+    var card = node.parentNode.parentNode.parentNode.parentNode;
+    if (card.className.indexOf("card ") === -1) {
+        card = card.parentNode;
+    }
+    if (card.className.indexOf("card ") > -1) {
+        card.className = "card deletedCard";
+        card.dataOldHTML = card.innerHTML;
+        card.innerHTML = card.myCardType.slice(0, 1).toUpperCase() + card.myCardType.slice(1, card.myCardType.length) + " deleted. <a class=\"undoDeleteCard\">Undo</a>";
+        updateBottom();
+    }
+}
+
+/*
+ *
+ *  Script to make cards
+ *   - returns a card document fragment
+ *
+ * var cardInfo = {
+ *   logoSrc: "http://link.to/logo",
+ *   itemURL: "http://someshit.com",
+ *   type: "flight, hotel, or car",
+ *   activeEdit: true,
+ *   selected: false,
+ *   startTime: 1234567890,
+ *   endTime: 1234567890,
+ *   heading: "heading-as-string",
+ *   subText: "subtext-as-string",
+ *   price: "1234567890"
+ * };
+ */
+
+// baby card maker is for the top and bottom frags
+function babyCardMaker(divId) {
+    var fragment = document.createDocumentFragment();
+    var outerDiv = document.createElement("div");
+    outerDiv.className = "card selectedCard";
+    outerDiv.id = divId;
+    fragment.appendChild(outerDiv);
+    return fragment;
+}
+
+function cardMaker(cardInfo) {
+    var fragment = document.createDocumentFragment();
+    var outerDiv = document.createElement("div");
+    outerDiv.className = "card";
+    if (cardInfo.selected) {
+        outerDiv.className += " selectedCard";
+    }
+    if (!cardInfo.activeEdit) {
+        outerDiv.className += " makeSelection";
+    }
+    if (cardInfo.mini) {
+        outerDiv.className = "miniCard";
+    }
+    outerDiv.myCardType = cardInfo.type;
+    var table = document.createElement("table");
+    var row = document.createElement("tr");
+    var firstCell = document.createElement("td");
+    firstCell.className = "cardFirstCell";
+
+    if (!cardInfo.mini) {
+        var logo = document.createElement("img");
+        logo.src = cardInfo.logoSrc;
+        firstCell.appendChild(logo);
+        row.appendChild(firstCell);
+    }
+    var secondCell = document.createElement("td");
+    secondCell.className = "cardSecondCell";
+    var headingObj = document.createElement("h2");
+    var headingTxt = document.createTextNode(cardInfo.heading);
+    headingObj.appendChild(headingTxt);
+    secondCell.appendChild(headingObj);
+    var subHeadingObj = document.createElement("h3");
+    var subHeadingTxt = document.createTextNode(cardInfo.subText);
+    subHeadingObj.appendChild(subHeadingTxt);
+    secondCell.appendChild(subHeadingObj);
+    row.appendChild(secondCell);
+    if (!cardInfo.mini) {
+        var thirdCell = document.createElement("td");
+        thirdCell.className = "cardThirdCell";
+        var xAtTop = document.createElement("div");
+        var xAtTopTxt = document.createTextNode("X");
+        xAtTop.className = "xAtTop AxAtTop";
+        xAtTop.myCardType = cardInfo.type;
+        xAtTop.appendChild(xAtTopTxt);
+        var txAtTop = document.createElement("div");
+        var txAtTopTxt = document.createTextNode("Delete ");
+        txAtTop.className = "txAtTop AxAtTop";
+        txAtTop.myCardType = cardInfo.type;
+        txAtTop.appendChild(txAtTopTxt);
+        txAtTop.appendChild(xAtTop);
+        thirdCell.appendChild(txAtTop);
+        var priceObj = document.createElement("div");
+        var actualPrice = document.createElement("span");
+        actualPrice.className = "actualPrice";
+        if (cardInfo.selected) {
+            actualPrice.className += " activeActualPrice";
+        }
+        var priceTxt = document.createTextNode(addCommas(cardInfo.price));
+        priceObj.className = "cardPrice";
+        actualPrice.dataPrice = cardInfo.price;
+        actualPrice.appendChild(priceTxt);
+        priceObj.appendChild(actualPrice);
+        thirdCell.appendChild(priceObj);
+        if (cardInfo.activeEdit) {
+            var changeDivObj = document.createElement("div");
+            var changeDivTxt = document.createTextNode("Edit " + cardInfo.type);
+            changeDivObj.appendChild(changeDivTxt);
+            changeDivObj.className = "changeDivClass changeDivClassHover";
+            thirdCell.appendChild(changeDivObj);
+        }
+        row.appendChild(thirdCell);
+    }
+    table.appendChild(row);
+    outerDiv.appendChild(table);
+    fragment.appendChild(outerDiv);
+    return fragment;
+}
+
+/*
+ *
+ *  Script to make subcardholderfram
+ * var type = "flight or whatever"
+ * var subCardInfo = [cardInfo1, cardInfo2, cardInfo3];
+ */
+
+function switchCardsFrameMaker(type, subCardInfo) {
+    var fragment = document.createDocumentFragment();
+    var table = document.createElement("table");
+    var firstSubCardRow = document.createElement("tr");
+    var td1R1 = document.createElement("td");
+    var td2R1 = document.createElement("td");
+    firstSubCardRow.className = "firstSubCardRow";
+    var caption1 = document.createElement("h1");
+    var caption1Txt = document.createTextNode("Select another " + type);
+    caption1.appendChild(caption1Txt);
+    td1R1.appendChild(caption1);
+    firstSubCardRow.appendChild(td1R1);
+    firstSubCardRow.appendChild(td2R1);
+    table.appendChild(firstSubCardRow);
+    var secondSubCardRow = document.createElement("tr");
+    secondSubCardRow.className = "secondSubCardRow";
+    var secondSubCardCell = document.createElement("td");
+    for (var k = 0; k < subCardInfo.length; k++) {
+        secondSubCardCell.appendChild(subCardInfo[k]);
+    }
+    secondSubCardRow.appendChild(secondSubCardCell);
+    table.appendChild(secondSubCardRow);
+    var thirdSubCardRow = document.createElement("tr");
+    thirdSubCardRow.className = "thirdSubCardRow";
+    var thirdSubCardCell = document.createElement("td");
+    var continueDivButton = document.createElement("div");
+    var continueDivButtonTxt = document.createTextNode("Select one to continue");
+    continueDivButton.appendChild(continueDivButtonTxt);
+    continueDivButton.className = "continueDivButton";
+    thirdSubCardCell.appendChild(continueDivButton);
+    var closeDivCancel = document.createElement("div");
+    var closeDivCancelTxt = document.createTextNode("Cancel");
+    closeDivCancel.appendChild(closeDivCancelTxt);
+    closeDivCancel.className = "closeChangeDiv";
+    thirdSubCardCell.appendChild(closeDivCancel);
+    thirdSubCardRow.appendChild(thirdSubCardCell);
+    table.appendChild(thirdSubCardRow);
+    fragment.appendChild(table);
+    return fragment;
+}
+/*
+ *
+ *  Script for toast
+ *
+ *
+ */
+
+function toast(title, explanation, cancel, confirm, callback, args) {
+    document.getElementById("toast").className = "showing";
+    document.getElementById("toastTitle").innerHTML = title;
+    document.getElementById("toastExplanation").innerHTML = explanation;
+    document.getElementById("toastCancel").innerHTML = cancel;
+    document.getElementById("toastConfirm").innerHTML = confirm;
+    document.getElementById("toastConfirm").addEventListener("click", confirmFunction, false);
+    document.getElementById("toastCancel").addEventListener("click", hideToast, false);
+    document.addEventListener("keypress", function (evt) {
+        if (evt.which === 13) {
+            confirmFunction();
+        } else if (evt.which === 27) {
+            hideToast();
+        }
+    }, false);
+
+    function confirmFunction() {
+        hideToast();
+        callback(args);
+    }
+}
+
+function hideToast() {
+    document.getElementById("toast").className = "hidden";
+}
+
+/*
+ *
+ *
+ * HTTP and GeoIp functions
+ *
+ *
+ */
+
+function httpGetAsync(theUrl, callback) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            callback(JSON.parse(xmlHttp.responseText));
+        }
+    };
+    xmlHttp.open("GET", theUrl, true);
+    xmlHttp.send(null);
+}
+
+function getIP() {
+    document.getElementById("topCardForInfo").innerHTML = "Loading info...";
+    var locationData = httpGetAsync("https://www.telize.com/geoip", finishLocationInfo);
+    workOnTop();
+}
+
+/*
+ *
+ * Header and footer functions
+ *
+ */
+function finishLocationInfo(obj) {
+    if(!document.getElementById("departureLocation").value){
+        document.getElementById("departureLocation").value = obj.city + ", " + obj.region_code;
+    }
+    USERitinerary.location=[];
+    USERitinerary.location.latitude = obj.latitude;
+    USERitinerary.location.longitude = obj.longitude;
+        var cd = new Date();
+        document.getElementById("departureDate").min = cd.getFullYear()+"-"+(cd.getMonth()+1)+"-"+(cd.getDate()-1);
+        document.getElementById("returnDate").min =  cd.getFullYear()+"-"+(cd.getMonth()+1)+"-"+cd.getDate();
+        document.getElementById("departureTime").value = cd.getHours()+":"+cd.getMinutes()+":00";
+        console.log(cd.getHours()+":"+cd.getMinutes()+":00");
+        document.getElementById("returnTime").value = cd.getHours()+":"+cd.getMinutes()+":00";
+}
+
+function workOnTop() {
+    document.getElementById("topCardForInfo").innerHTML = "<table class=\"cardOneTable\"> <tr><td class=\"colOneTop\"> <a dataType=\"location\" title=\"Click to edit\" class=\"editableAnchor\">Departing from: <br/><input type=\"text\" placeholder=\"Loading your location\" id=\"departureLocation\"/></a></td><td><img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxRraKP1uFjTYYBoJZUhY17aIcUxsmZlEFVMA0xg94Ky2qWiIZ\" class=\"miniLogo\" /> <a dataType=\"date\" title=\"Click to edit\" class=\"editableAnchor\">Leaving on: <br/><input type=\"date\"min=\"2015-09-12\" value=\"2015-09-13\" id=\"departureDate\"/></a></td><td class=\"colThreeTop\"> <img class=\"miniLogo2\" src=\"https://d30y9cdsu7xlg0.cloudfront.net/png/74037-200.png\" /><a dataType=\"date\" title=\"Click to edit\" class=\"leaveTime\">As early as:<br/><input type=\"time\" value=\"14:30:00\" id=\"departureTime\"/></a></td> </tr> <tr><td class=\"colOneTop\"> <a dataType=\"people\" title=\"Click to edit\" class=\"editableAnchor\">Number of people:<br/><input type=\"number\" value=\"1\" id=\"numPeople\"/></a></td><td><img src=\"http://www.clker.com/cliparts/B/2/l/0/b/k/arrivals-airport-sign-hi.png\" class=\"miniLogo\" /> <a dataType=\"date\" title=\"Click to edit\" class=\"editableAnchor\">Returning on:<br/><input type=\"date\" value=\"2015-09-20\" id=\"returnDate\" min=\"2015-09-12\"/></a></td><td class=\"colThreeTop\"> <img class=\"miniLogo2\" src=\"https://d30y9cdsu7xlg0.cloudfront.net/png/74038-200.png\" /><a dataType=\"time\" title=\"Click to edit\" class=\"editableAnchor\">As late as:<br/><input type=\"time\" value=\"14:30:00\" id=\"returnTime\"/></a></td> </tr></table>";
+   
+}
+
+/*
+ *
+ * Format big numbers well
+ *
+ */
+
+function addCommas(n) {
+    var str = n.toString();
+    if (n > 1000 && n < 1000000) {
+        str = str.slice(0, str.length - 3) + "," + str.slice(str.length - 3, str.length);
+    }
+    return str;
+}
+}//]]> 
+
+</script>
+
+<script src="http://debug.phonegap.com/target/target-script-min.js#jsf_qjh"></script></head>
+<body>
+  <table class="mainTable">
+    <tr>
+        <td class="topCell"><a href="http://xplor.xyz"><img class="logoTop" src="http://s7.postimg.org/u1tmva33v/unnamed.jpg" /></a><p class="logoSubText">one click travel</p>
+        </td>
+    </tr>
+    <tr>
+        <td class="middleCell"></td>
+    </tr>
+    <tr>
+        <td class="bottomCell"><span id="bottomCenter">Purchase </span>
+
+        </td>
+    </tr>
+</table>
+<div id="bad-browser">JavaScript is disabled. Some things might look wrong.</div>
+<div class="hidden" id="toast">
+    <table>
+        <tr>
+            <td>
+                 <h1 id="toastTitle">Toast title</h1>
+
+                <p id="toastExplanation">Lorem ipsum dolorit I wiash I knewa de latin but Iya don'te so Iya makea upa somee stofe upa.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="toastButtons" id="toastCancel">Cancel</div>
+                <div class="toastButtons" id="toastConfirm">Confirm</div>
+            </td>
+        </tr>
+    </table>
+</div>
+  
+</body>
+
+</html>
+
