@@ -1,10 +1,13 @@
 from __future__ import absolute_import
-
+from collections import OrderedDict
 import json
 import os
 
 from flask import Flask, render_template, request, redirect, session
 import requests
+
+from geopy.distance import vincenty
+
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 app.requests_session = requests.Session()
@@ -13,6 +16,8 @@ app.secret_key = os.urandom(24)
 with open('config.json') as f:
 	config = json.load(f)
 
+global my_dict
+my_dict = {}
 
 # use decorators to link the function to a url
 @app.route('/health',methods=['GET'])
@@ -42,7 +47,7 @@ def uberprice():
 	output = json.loads(binary)
 	uberX = output['prices'][0]
 	uberXL = output['prices'][1]
-	uberSELECT = output['prices'][2]
+	uberSELECT = output['prices'][5]
 
 	return render_template(
 	                       'home.html',
@@ -53,71 +58,6 @@ def uberprice():
 	                       )
 
 
-@app.route('/')
-def home():
-	# parameters = {
-	# 	'origin': 'Mosher-Jordan Hall, Ann Arbor, MI 48109',
-	# 	'destination': 'New York, NY',
-	# 	'key': 'AIzaSyAj5cCIIpeDtSqKX8gN6UNzTAO-SOmMQVk',
-	# }
-	# url = 'https://maps.googleapis.com/maps/api/directions/json?parameters'
-
-
-	# response = requests.get(url, params=parameters)
-	# data = response.json()
-	# return render_template('home.html', token=data)
-
-
-# @app.route('/price', methods=['GET'])
-# def price(): 
-# 	# uber
-# 	url = 'https://api.uber.com/v1/products'
-
-# 	parameters = {
-#     	'server_token': 'gDVK4AzgzSuBcvA5t8oG6P7BfdtdBveGVWGWt1Kq',
-#     	'latitude': 37.775818,
-#     	'longitude': -122.418028,
-# 	}
-
-# 	response = requests.get(url, params=parameters)
-
-# 	# data = response.json()
-
-# 	return render_template('home.html', token=response.text)
-# 	url = config.get('https://api.uber.com/v1/products') + 'estimates/price'
-# 	parameters = {
-# 		'server_token': 'gDVK4AzgzSuBcvA5t8oG6P7BfdtdBveGVWGWt1Kq',
-#     	'start_latitude': config.get('start_latitude'),
-#         'start_longitude': config.get('start_longitude'),
-#         'end_latitude': config.get('end_latitude'),
-#         'end_longitude': config.get('end_longitude'),
-# 	}
-# def flights():
-	api_key = "AIzaSyAj5cCIIpeDtSqKX8gN6UNzTAO-SOmMQVk"
-	url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=" + api_key
-	headers = {'content-type': 'application/json'}
-
-	params = {
-	  "request": {
-	    "slice": [
-	      {
-	        "origin": "DTW",
-	        "destination": "JFK",
-	        "date": "2015-09-12"
-	      }
-	    ],
-	    "passengers": {
-	      "adultCount": 1
-	    },
-	    "solutions": 2,
-	    "refundable": False
-	  }
-	}
-
-	response = requests.post(url, data=json.dumps(params), headers=headers)
-	data = response.json()
-	return render_template('home.html',token=data)
-	
 @app.route('/expedia')
 def expedia():
 	api_key = "uoxquw9WjwGe6XrIMr4LIydfvdD6PvET"
@@ -129,9 +69,8 @@ def expedia():
 	                                    )
 
 	data = response.json()
-
 	with open("hotel.json", 'w') as i:
-		for item in range(5):
+		for item in range(7):
 			binary = response.content
 			output = json.loads(binary)
 			location = (output['HotelInfoList'])['HotelInfo'][item]['Location']
@@ -140,22 +79,95 @@ def expedia():
 			price = (output['HotelInfoList'])['HotelInfo'][item]['FeaturedOffer']['Price']['TotalRate']['Value']
 			buy = (output['HotelInfoList'])['HotelInfo'][item]['DetailsUrl']
 			image = (output['HotelInfoList'])['HotelInfo'][item]['ThumbnailUrl']
+			latitude = output['HotelInfoList']['HotelInfo'][item]['Location']["GeoLocation"]["Latitude"] 
+			longitude = output['HotelInfoList']['HotelInfo'][item]['Location']["GeoLocation"]["Longitude"] 
+
 			dictionary = {
-				'location': location,
-				'hotelID': hotelID,
-				'starRating': starRating,
-				'price': price,
-				'buy': buy,
-				'image': image
+					'location': location,
+					'hotelID': hotelID,
+					'starRating': starRating,
+					'price': price,
+					'buy': buy,
+					'image': image,
+					'latitude': latitude,
+					'longitude': longitude,
+					}
+
+			a2 = (42.284707, -83.741527)
+			t1 = (dictionary['latitude'], dictionary['longitude'])
+
+			distance = vincenty(a2, t1).miles
+			my_dict.update(dictionary)
+			dis = {
+				'distance': distance,
+
+			}
+			my_dict.update(dis)
+			json.dump(my_dict, i, ensure_ascii=False)
+
+		
+		# OrderedDict(sorted(my_dict.items(), key=lambda t: t[1]))
+
+	return render_template('hotel.json', token=dictionary)
+
+
+@app.route('/flights')
+def flights():
+	
+	api_key = "AIzaSyB6JIWZK9O9-9t4nJCVUQGoK0sqY-5YCLk"
+	url = "https://www.googleapis.com/qpxExpress/v1/trips/search?key=" + api_key
+	headers = {'content-type': 'application/json'}
+
+	params = {
+	  "request": {
+	    "slice": [
+	      {
+	        "origin": "DTW",
+	        "destination": "JFK",
+	        "date": "2015-09-13"
+	      }
+	    ],
+	    "passengers": {
+	      "adultCount": 1
+	    },
+	    "solutions": 3,
+	    "refundable": False
+	  }
+	}
+
+	response = requests.post(url, data=json.dumps(params),headers=headers
+	                                    )
+	json_data = response.json()
+
+	with open("hotel.json", 'w') as f:
+		for item in range(2):
+			saleTotal = json_data["trips"]['tripOption'][item]["saleTotal"]
+			flight_duration_hrs = (json_data['trips']['tripOption'][0]['slice'][0]["duration"]) / 60
+			flight_duration_min = (json_data['trips']['tripOption'][0]['slice'][0]["duration"]) % 60
+			flight = json_data['trips']['tripOption'][0]['slice'][0]["segment"][0]["flight"]
+			departure_time = json_data['trips']['tripOption'][0]['slice'][0]["segment"][0]["leg"][item]['departureTime']
+			arrival_time = json_data['trips']['tripOption'][0]['slice'][0]["segment"][0]["leg"][item]['arrivalTime']
+			origin = json_data['trips']['tripOption'][0]['slice'][0]["segment"][0]["leg"][item]['origin']
+			destination = json_data['trips']['tripOption'][0]['slice'][0]["segment"][0]["leg"][item]['destination']
+
+			dictionary = {
+				'price': saleTotal,
+				'flight': flight,
+				'origin': origin,
+				'departure_time': departure_time,
+				'arrival_time': arrival_time,
+				'destination':destination,
+				'flight_duration_hrs':flight_duration_hrs,
+				'flight_duration_min':flight_duration_min
+
 			}
 
-
-			json.dump(dictionary, i , ensure_ascii=False)
-
+			
 			my_dict.update(dictionary)
+			json.dump(my_dict, i , ensure_ascii=False)
 
-	return render_template('hotel.json', taken=my_dict)
 
+	return render_template('hotel.json', token=my_dict)
 
 
 if __name__ == '__main__':
