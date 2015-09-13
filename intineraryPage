@@ -5,6 +5,14 @@
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <title>xplor.xyz</title>
   
+  
+  <script type='text/javascript' src='/js/lib/dummy.js'></script>
+  
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
   <style type='text/css'>
     html, body {
     font-family:'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
@@ -25,6 +33,9 @@
     animation-duration: 1s;
     overflow: hidden;
 }
+td img {
+    max-width:50px;
+}
 @keyframes comeinBody {
     0% {
         top:-2000px;
@@ -41,16 +52,14 @@
         transform: scale(1.0);
     }
 }
-.logoTop{
-    padding-top: 15px;
-    width: 30%;
-    height: 15%;
+.logoTop {
+    width: 400px;
+    transform: scale(2.5);
 }
-.logoSubText{
+.logoSubText {
     line-height: 14px;
     margin: 5px auto;
     color:#2447B2;
-    
 }
 .topCell > a {
     text-decoration: none;
@@ -58,14 +67,12 @@
     /*margin-left: 20px;*/
 }
 .mainTable {
-    position: absolute;
-    /* MAY BE REMOVED */
     margin: auto;
     top: 0px;
     left: 0px;
     width: 100%;
     height: 100%;
-    max-width: 1000px;
+    max-width: 660px;
     min-width: 300px;
     min-height: 500px;
     box-sizing: content-box;
@@ -181,8 +188,9 @@
  *
  */
  .card {
-    width: 575px;
-    min-height: 120px;
+    width:90%;
+    max-width: 575px;
+    min-height: 160px;
     box-sizing: border-box;
     border-radius: 5px;
     border: 0px solid black;
@@ -192,8 +200,9 @@
     animation-duration: 0.5s;
     transition: all 0.3s;
 }
- .miniCard {
-    width: 575px;
+.miniCard {
+    width:90%;
+    max-width: 575px;
     height: 40px;
     box-sizing: border-box;
     border-radius: 5px;
@@ -202,7 +211,7 @@
     animation-name: comeinCard;
     animation-duration: 0.5s;
     transition: all 0.3s;
-     margin: 0 auto;
+    margin: 0 auto;
 }
 .miniCard h2 {
     display:none;
@@ -212,8 +221,8 @@
     line-height: 10px;
 }
 .card:nth-of-type(1) {
-    height: 140px;
-    width: 575px;
+    width:90%;
+    max-width: 575px;
 }
 .selectedCard {
     box-shadow: 0px 0px 5px blue;
@@ -417,6 +426,11 @@
         box-shadow: 0px 0px 10px blue;
     }
 }
+@media (max-width: 650px) {
+    .upperLogos {
+        display:none;
+    }
+}
 /*
  *
  * STYLE FOR TOAST
@@ -545,6 +559,10 @@
 }
 .colThreeTop {
 }
+.topNoteHeader {
+    text-align: center;
+    color: navy;
+}
   </style>
   
 
@@ -552,9 +570,11 @@
 
 <script type='text/javascript'>//<![CDATA[
 window.onload=function(){
+var JSONOBJ = JSON.parse("{\"UberInfo\": [{\"UberType\": \"uberX\"}, {\"UberDuration\": 1977}, {\"UberEstimate\": \"$43-56\"}, {\"UberProduct_id\": \"5791244c-faf8-4fd6-811e-ed7d2382dcd3\"}, {\"UberType\": \"uberXL\"}, {\"UberDuration\": 1977}, {\"UberEstimate\": \"$74-96\"}, {\"UberProduct_id\": \"631e6101-1b69-49bc-a158-2114e7590797\"}, {\"UberType\": \"uberSELECT\"}, {\"UberDuration\": 1977}, {\"UberEstimate\": \"$70-90\"}, {\"UberProduct_id\": \"c925ffe4-ac0d-424b-94bb-5e0e34e8eae6\"}], \"Flight1\": [{\"totalPrice\": \"USD173.10\"}, {\"totalDurationHrs\": 4}, {\"totalDurationMin\": 49}, {\"firstFlight\": {\"carrier\": \"US\", \"number\": \"4542\"}}, {\"firstDepartureTime\": \"2015-09-14T10:25-04:00\"}, {\"firstArrivalTime\": \"2015-09-14T12:16-04:00\"}, {\"firstOrigin\": \"DTW\"}, {\"firstDestination\": \"CLT\"}, {\"firstConnectionDuration\": 64}, {\"connectionFlight\": {\"carrier\": \"US\", \"number\": \"608\"}}, {\"connectionDepartureTime\": \"2015-09-14T13:20-04:00\"}, {\"connectionArrivalTime\": \"2015-09-14T15:14-04:00\"}, {\"connectionOrigin\": \"CLT\"}, {\"connectionDestination\": \"JFK\"}], \"Flight0\": [{\"totalPrice\": \"USD173.10\"}, {\"totalDurationHrs\": 4}, {\"totalDurationMin\": 17}, {\"firstFlight\": {\"carrier\": \"US\", \"number\": \"1700\"}}, {\"firstDepartureTime\": \"2015-09-14T11:55-04:00\"}, {\"firstArrivalTime\": \"2015-09-14T13:42-04:00\"}, {\"firstOrigin\": \"DTW\"}, {\"firstDestination\": \"CLT\"}, {\"firstConnectionDuration\": 41}, {\"connectionFlight\": {\"carrier\": \"US\", \"number\": \"2017\"}}, {\"connectionDepartureTime\": \"2015-09-14T14:23-04:00\"}, {\"connectionArrivalTime\": \"2015-09-14T16:12-04:00\"}, {\"connectionOrigin\": \"CLT\"}, {\"connectionDestination\": \"JFK\"}], \"Flight3\": [{\"totalPrice\": \"USD173.10\"}, {\"totalDurationHrs\": 6}, {\"totalDurationMin\": 59}, {\"firstFlight\": {\"carrier\": \"US\", \"number\": \"2065\"}}, {\"firstDepartureTime\": \"2015-09-14T08:15-04:00\"}, {\"firstArrivalTime\": \"2015-09-14T10:04-04:00\"}, {\"firstOrigin\": \"DTW\"}, {\"firstDestination\": \"CLT\"}, {\"firstConnectionDuration\": 196}, {\"connectionFlight\": {\"carrier\": \"US\", \"number\": \"608\"}}, {\"connectionDepartureTime\": \"2015-09-14T13:20-04:00\"}, {\"connectionArrivalTime\": \"2015-09-14T15:14-04:00\"}, {\"connectionOrigin\": \"CLT\"}, {\"connectionDestination\": \"JFK\"}], \"Flight2\": [{\"totalPrice\": \"USD173.10\"}, {\"totalDurationHrs\": 5}, {\"totalDurationMin\": 47}, {\"firstFlight\": {\"carrier\": \"US\", \"number\": \"4542\"}}, {\"firstDepartureTime\": \"2015-09-14T10:25-04:00\"}, {\"firstArrivalTime\": \"2015-09-14T12:16-04:00\"}, {\"firstOrigin\": \"DTW\"}, {\"firstDestination\": \"CLT\"}, {\"firstConnectionDuration\": 127}, {\"connectionFlight\": {\"carrier\": \"US\", \"number\": \"2017\"}}, {\"connectionDepartureTime\": \"2015-09-14T14:23-04:00\"}, {\"connectionArrivalTime\": \"2015-09-14T16:12-04:00\"}, {\"connectionOrigin\": \"CLT\"}, {\"connectionDestination\": \"JFK\"}], \"Flight4\": [{\"totalPrice\": \"USD174.60\"}, {\"totalDurationHrs\": 4}, {\"totalDurationMin\": 7}, {\"firstFlight\": {\"carrier\": \"US\", \"number\": \"5275\"}}, {\"firstDepartureTime\": \"2015-09-14T12:20-04:00\"}, {\"firstArrivalTime\": \"2015-09-14T13:58-04:00\"}, {\"firstOrigin\": \"DTW\"}, {\"firstDestination\": \"DCA\"}, {\"firstConnectionDuration\": 53}, {\"connectionFlight\": {\"carrier\": \"US\", \"number\": \"4321\"}}, {\"connectionDepartureTime\": \"2015-09-14T14:51-04:00\"}, {\"connectionArrivalTime\": \"2015-09-14T16:27-04:00\"}, {\"connectionOrigin\": \"DCA\"}, {\"connectionDestination\": \"JFK\"}], \"Hotel4\": [{\"hotelName\": \"Courtyard By Marriott Ann Arbor\"}, {\"hotelLocation\": {\"Province\": \"MI\", \"City\": \"Ann Arbor\", \"StreetAddress\": \"3205 Boardwalk St\", \"GeoLocation\": {\"Latitude\": \"42.2406\", \"Longitude\": \"-83.73462\"}, \"Country\": \"USA\"}}, {\"hotelID\": \"236\"}, {\"hotelStarRating\": \"3.0\"}, {\"hotelPrice\": \"180.19\"}, {\"hotelBuy\": \"http://www.expedia.com/go/hotel/info/236/0/0?tpid=1&eapid=0&langid=1033\"}, {\"hotelImage\": \"https://images.trvl-media.com/hotels/1000000/10000/300/236/236_81_t.jpg\"}, {\"hotelLatitude\": \"42.2406\"}, {\"hotelLongitude\": \"-83.73462\"}, {\"hotelDistance\": \"3.06\"}], \"Hotel5\": [{\"hotelName\": \"Holiday Inn Ann Arbor-Near The Univ. Of Mi\"}, {\"hotelLocation\": {\"Province\": \"MI\", \"City\": \"Ann Arbor\", \"StreetAddress\": \"3600 Plymouth Road\", \"GeoLocation\": {\"Latitude\": \"42.304733\", \"Longitude\": \"-83.690442\"}, \"Country\": \"USA\"}}, {\"hotelID\": \"14795\"}, {\"hotelStarRating\": \"3.0\"}, {\"hotelPrice\": \"131.61\"}, {\"hotelBuy\": \"http://www.expedia.com/go/hotel/info/14795/0/0?tpid=1&eapid=0&langid=1033\"}, {\"hotelImage\": \"https://images.trvl-media.com/hotels/1000000/20000/14800/14795/14795_345_t.jpg\"}, {\"hotelLatitude\": \"42.304733\"}, {\"hotelLongitude\": \"-83.690442\"}, {\"hotelDistance\": \"2.96\"}], \"Hotel6\": [{\"hotelName\": \"Wyndham Garden Ann Arbor\"}, {\"hotelLocation\": {\"Province\": \"MI\", \"City\": \"Ann Arbor\", \"StreetAddress\": \"2900 Jackson Ave\", \"GeoLocation\": {\"Latitude\": \"42.28287\", \"Longitude\": \"-83.78817\"}, \"Country\": \"USA\"}}, {\"hotelID\": \"458015\"}, {\"hotelStarRating\": \"3.0\"}, {\"hotelPrice\": \"113.21\"}, {\"hotelBuy\": \"http://www.expedia.com/go/hotel/info/458015/0/0?tpid=1&eapid=0&langid=1033\"}, {\"hotelImage\": \"https://images.trvl-media.com/hotels/1000000/460000/458100/458015/458015_282_t.jpg\"}, {\"hotelLatitude\": \"42.28287\"}, {\"hotelLongitude\": \"-83.78817\"}, {\"hotelDistance\": \"2.39\"}], \"Hotel0\": [{\"hotelName\": \"Stone Chalet Bed and Breakfast Inn and Event Center\"}, {\"hotelLocation\": {\"Province\": \"MI\", \"City\": \"Ann Arbor\", \"StreetAddress\": \"1917 Washtenaw Ave\", \"GeoLocation\": {\"Latitude\": \"42.268281\", \"Longitude\": \"-83.722783\"}, \"Country\": \"USA\"}}, {\"hotelID\": \"8377936\"}, {\"hotelStarRating\": \"3.5\"}, {\"hotelPrice\": \"168.54\"}, {\"hotelBuy\": \"http://www.expedia.com/go/hotel/info/8377936/0/0?tpid=1&eapid=0&langid=1033\"}, {\"hotelImage\": \"https://images.trvl-media.com/hotels/9000000/8380000/8378000/8377936/8377936_35_t.jpg\"}, {\"hotelLatitude\": \"42.268281\"}, {\"hotelLongitude\": \"-83.722783\"}, {\"hotelDistance\": \"1.49\"}], \"Hotel1\": [{\"hotelName\": \"Sheraton Ann Arbor Hotel\"}, {\"hotelLocation\": {\"Province\": \"MI\", \"City\": \"Ann Arbor\", \"StreetAddress\": \"3200 Boardwalk Street\", \"GeoLocation\": {\"Latitude\": \"42.24051\", \"Longitude\": \"-83.73476\"}, \"Country\": \"USA\"}}, {\"hotelID\": \"13497\"}, {\"hotelStarRating\": \"3.5\"}, {\"hotelPrice\": \"156.31\"}, {\"hotelBuy\": \"http://www.expedia.com/go/hotel/info/13497/0/0?tpid=1&eapid=0&langid=1033\"}, {\"hotelImage\": \"https://images.trvl-media.com/hotels/1000000/20000/13500/13497/13497_201_t.jpg\"}, {\"hotelLatitude\": \"42.24051\"}, {\"hotelLongitude\": \"-83.73476\"}, {\"hotelDistance\": \"3.07\"}], \"Hotel2\": [{\"hotelName\": \"Weber's Inn\"}, {\"hotelLocation\": {\"Province\": \"MI\", \"City\": \"Ann Arbor\", \"StreetAddress\": \"3050 Jackson Road\", \"GeoLocation\": {\"Latitude\": \"42.28451\", \"Longitude\": \"-83.79079\"}, \"Country\": \"USA\"}}, {\"hotelID\": \"21561\"}, {\"hotelStarRating\": \"3.5\"}, {\"hotelPrice\": \"132.31\"}, {\"hotelBuy\": \"http://www.expedia.com/go/hotel/info/21561/0/0?tpid=1&eapid=0&langid=1033\"}, {\"hotelImage\": \"https://images.trvl-media.com/hotels/1000000/30000/21600/21561/21561_93_t.jpg\"}, {\"hotelLatitude\": \"42.28451\"}, {\"hotelLongitude\": \"-83.79079\"}, {\"hotelDistance\": \"2.52\"}], \"Hotel3\": [{\"hotelName\": \"Holiday Inn & Suites Ann Arbor Univ Michigan Area\"}, {\"hotelLocation\": {\"Province\": \"MI\", \"City\": \"Ann Arbor\", \"StreetAddress\": \"3155 Boardwalk Dr.\", \"GeoLocation\": {\"Latitude\": \"42.24134\", \"Longitude\": \"-83.7347\"}, \"Country\": \"USA\"}}, {\"hotelID\": \"1541083\"}, {\"hotelStarRating\": \"3.0\"}, {\"hotelPrice\": \"131.61\"}, {\"hotelBuy\": \"http://www.expedia.com/go/hotel/info/1541083/0/0?tpid=1&eapid=0&langid=1033\"}, {\"hotelImage\": \"https://images.trvl-media.com/hotels/2000000/1550000/1541100/1541083/1541083_157_t.jpg\"}, {\"hotelLatitude\": \"42.24134\"}, {\"hotelLongitude\": \"-83.7347\"}, {\"hotelDistance\": \"3.01\"}]}");
+
 /* not testing */
 var USERitinerary = {
-    isRoundTrip: true
+    isRouudTrip: true
 };
 var fakeCardInfo = {
     logoSrc: "https://installerfinder.energysavingtrust.org.uk/images/ImagePlaceholderSmall.png",
@@ -569,6 +589,7 @@ var fakeCardInfo = {
     price: "150",
     mini: false
 };
+
 function isMobile() {
     var index = navigator.appVersion.indexOf("Mobile");
     return (index > -1);
@@ -598,15 +619,77 @@ document.getElementsByClassName("middleCell")[0].addEventListener("click", cardH
 
 setTimeout(function () {
     document.getElementById("idToDeleteTheLoader").parentNode.removeChild(document.getElementById("idToDeleteTheLoader"));
+    //document.getElementById("idToDeleteThisToo").parentNode.removeChild(document.getElementById("idToDeleteThisToo"));
+    
+    var realcardinfo = {
+        logoSrc: "https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/444/aiga_departingflights-512.png",
+        itemURL: "",
+        type: "flight",
+        activeEdit: false,
+        selected: true,
+        subText: "Uber from your house to the airport",
+        price: JSONOBJ.UberInfo[2].UberEstmate,
+        mini: true
+    };
+    document.getElementById("cardHolder").appendChild(cardMaker(realcardinfo));
+    var realcardinfo1 = {
+        logoSrc: "https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/444/aiga_departingflights-512.png",
+        itemURL: "",
+        type: "flight",
+        activeEdit: true,
+        selected: true,
+        startTime: JSONOBJ.Flight0[4].firstDepartureTime,
+        endTime: JSONOBJ.Flight0[11].connectionArrivalTime,
+        heading: "Flight from "+JSONOBJ.Flight0[6].firstOrigin+" to "+JSONOBJ.Flight0[13].connectionDestination,
+        subText: "",
+        price: parseFloat(JSONOBJ.Flight0[0].totalPrice.slice(3,8)),
+        mini: false
+    };
+    document.getElementById("cardHolder").appendChild(cardMaker(realcardinfo1));
     document.getElementById("idToDeleteThisToo").parentNode.removeChild(document.getElementById("idToDeleteThisToo"));
-
-    document.getElementById("cardHolder").appendChild(cardMaker(fakeCardInfo));
-    document.getElementById("cardHolder").appendChild(cardMaker(fakeCardInfo));
-    document.getElementById("cardHolder").appendChild(cardMaker(fakeCardInfo));
-    document.getElementById("cardHolder").appendChild(cardMaker(fakeCardInfo));
-    document.getElementById("cardHolder").appendChild(cardMaker(fakeCardInfo));
+    console.log(JSONOBJ);
+    var realcardinfo2 = {
+        logoSrc: JSONOBJ.Hotel1[6].hotelImage,
+        itemURL: "",
+        type: "hotel",
+        activeEdit: true,
+        selected: true,
+        startTime: JSONOBJ.Flight0[4].firstDepartureTime,
+        endTime: JSONOBJ.Flight0[11].connectionArrivalTime,
+    heading: JSONOBJ.Hotel1[0].hotelName,
+        price: parseFloat(JSONOBJ.Flight0[0].totalPrice.slice(3,8)),
+        mini: false
+    };
+    document.getElementById("cardHolder").appendChild(cardMaker(realcardinfo2));
+    var realcardinfo1 = {
+        logoSrc: "https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/444/aiga_departingflights-512.png",
+        itemURL: "",
+        type: "flight",
+        activeEdit: true,
+        selected: true,
+        startTime: JSONOBJ.Flight0[4].firstDepartureTime,
+        endTime: JSONOBJ.Flight0[11].connectionArrivalTime,
+        heading: "Flight from "+JSONOBJ.Flight0[13].connectionDestination +" to "+JSONOBJ.Flight0[6].firstOrigin,
+        subText: "",
+        price: parseFloat(JSONOBJ.Flight0[0].totalPrice.slice(3,8)),
+        mini: false
+    };
+    document.getElementById("cardHolder").appendChild(cardMaker(realcardinfo1));var realcardinfo3 = {
+        logoSrc: "",
+        itemURL: "",
+        type: "hotel",
+        activeEdit: true,
+        selected: true,
+        startTime: 0,
+        endTime: 0,
+    heading: "",
+        subText: "Uber from the hotel to your house",
+        price: 1000,
+        mini: true
+    };
+    document.getElementById("cardHolder").appendChild(cardMaker(realcardinfo3));
     updateBottom();
-}, 6000);
+}, 1000);
 
 /* real js starts here */
 /*
@@ -636,9 +719,9 @@ try {
  */
 function updateBottom() {
     var totalPrice = sumOfPrices();
-    if (document.getElementsByClassName("finalPrice").length){
+    if (document.getElementsByClassName("finalPrice").length) {
         document.getElementsByClassName("finalPrice")[0].innerHTML = addCommas(totalPrice);
-    }else{
+    } else {
         var txt = document.createTextNode(addCommas(totalPrice));
         var obj = document.createElement("span");
         obj.dataPrice = totalPrice;
@@ -647,6 +730,7 @@ function updateBottom() {
         document.getElementById("bottomCenter").appendChild(obj);
         document.getElementById("bottomCenter").addEventListener("click", function1, false);
     }
+
     function function1() {
         toast("Confirm Purchase", "<div style=\"float:right;\"><p>" + addCommas(totalPrice) + "</p><span>+</span><input type=\"tel\" min=\"0\" id=\"inputForXplor\"/> for xplor</label><p  id=\"totalPOnCheckout\"></p></div>", "Go back", "Checkout", continueCheckout, undefined);
         if (!isMobile()) {
@@ -718,7 +802,26 @@ function cardHolderClickHandler(evt) {
             evt.target.className = "changeDivClass changeDivIsBig";
             saveOldInnerHTML = evt.target.innerHTML;
             evt.target.innerHTML = "";
-            evt.target.appendChild(switchCardsFrameMaker("flight", []));
+            evt.target.appendChild(switchCardsFrameMaker("flight", function(){
+                var theListToGo = [];
+                for (var k = 0; k < 3; k++){
+                	var realcardinfo4 = {
+                        logoSrc: "",
+                        itemURL: "",
+                        type: "hotel",
+                        activeEdit: true,
+                        selected: true,
+                        startTime: 0,
+                        endTime: 0,
+                        heading: "",
+                        subText: "Uber from the hotel to your house",
+                        price: 1000,
+                        mini: true
+                	};
+                	theListToGo.push(cardMaker(realcardinfo4));
+                }
+                return theListToGo;
+            }));
         }
     }
     if (evt.target.parentNode.parentNode.parentNode.className.indexOf("makeSelection") > -1) {
@@ -978,24 +1081,20 @@ function getIP() {
  *
  */
 function finishLocationInfo(obj) {
-    if(!document.getElementById("departureLocation").value){
+    if (!document.getElementById("departureLocation").value) {
         document.getElementById("departureLocation").value = obj.city + ", " + obj.region_code;
     }
-    USERitinerary.location=[];
+    USERitinerary.location = [];
     USERitinerary.location.latitude = obj.latitude;
     USERitinerary.location.longitude = obj.longitude;
-        var cd = new Date();
-        document.getElementById("departureDate").min = cd.getFullYear()+"-"+(cd.getMonth()+1)+"-"+(cd.getDate()-1);
-        document.getElementById("returnDate").min =  cd.getFullYear()+"-"+(cd.getMonth()+1)+"-"+cd.getDate();
-        document.getElementById("departureTime").value = cd.getHours()+":"+cd.getMinutes()+":00";
-        console.log(cd.getHours()+":"+cd.getMinutes()+":00");
-        document.getElementById("returnTime").value = cd.getHours()+":"+cd.getMinutes()+":00";
+    var cd = new Date();
+    document.getElementById("departureDate").min = cd.getFullYear() + "-" + (cd.getMonth() + 1) + "-" + (cd.getDate() - 1);
+    document.getElementById("returnDate").min = cd.getFullYear() + "-" + (cd.getMonth() + 1) + "-" + cd.getDate();
+    document.getElementById("departureTime").value = "0" + cd.getHours() + ":" + cd.getMinutes() + ":00";
+    document.getElementById("returnTime").value = "0" + cd.getHours() + ":" + cd.getMinutes() + ":00";
 }
 
-function workOnTop() {
-    document.getElementById("topCardForInfo").innerHTML = "<table class=\"cardOneTable\"> <tr><td class=\"colOneTop\"> <a dataType=\"location\" title=\"Click to edit\" class=\"editableAnchor\">Departing from: <br/><input type=\"text\" placeholder=\"Loading your location\" id=\"departureLocation\"/></a></td><td><img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxRraKP1uFjTYYBoJZUhY17aIcUxsmZlEFVMA0xg94Ky2qWiIZ\" class=\"miniLogo\" /> <a dataType=\"date\" title=\"Click to edit\" class=\"editableAnchor\">Leaving on: <br/><input type=\"date\"min=\"2015-09-12\" value=\"2015-09-13\" id=\"departureDate\"/></a></td><td class=\"colThreeTop\"> <img class=\"miniLogo2\" src=\"https://d30y9cdsu7xlg0.cloudfront.net/png/74037-200.png\" /><a dataType=\"date\" title=\"Click to edit\" class=\"leaveTime\">As early as:<br/><input type=\"time\" value=\"14:30:00\" id=\"departureTime\"/></a></td> </tr> <tr><td class=\"colOneTop\"> <a dataType=\"people\" title=\"Click to edit\" class=\"editableAnchor\">Number of people:<br/><input type=\"number\" value=\"1\" id=\"numPeople\"/></a></td><td><img src=\"http://www.clker.com/cliparts/B/2/l/0/b/k/arrivals-airport-sign-hi.png\" class=\"miniLogo\" /> <a dataType=\"date\" title=\"Click to edit\" class=\"editableAnchor\">Returning on:<br/><input type=\"date\" value=\"2015-09-20\" id=\"returnDate\" min=\"2015-09-12\"/></a></td><td class=\"colThreeTop\"> <img class=\"miniLogo2\" src=\"https://d30y9cdsu7xlg0.cloudfront.net/png/74038-200.png\" /><a dataType=\"time\" title=\"Click to edit\" class=\"editableAnchor\">As late as:<br/><input type=\"time\" value=\"14:30:00\" id=\"returnTime\"/></a></td> </tr></table>";
-   
-}
+
 
 /*
  *
@@ -1004,21 +1103,30 @@ function workOnTop() {
  */
 
 function addCommas(n) {
-    var str = n.toString();
+    str = n + "";
     if (n > 1000 && n < 1000000) {
         str = str.slice(0, str.length - 3) + "," + str.slice(str.length - 3, str.length);
     }
     return str;
 }
+
+
+
+function workOnTop() {
+    document.getElementById("topCardForInfo").innerHTML = "<table class=\"cardOneTable\"><tr><td class=\"colOneTop\"> <a dataType=\"location\" title=\"Click to edit\" class=\"editableAnchor\">Departing from: <br/><input type=\"text\" placeholder=\"Loading your location\" id=\"departureLocation\"/></a></td><td><img src=\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxRraKP1uFjTYYBoJZUhY17aIcUxsmZlEFVMA0xg94Ky2qWiIZ\" class=\"upperLogos miniLogo\" /> <a dataType=\"date\" title=\"Click to edit\" class=\"editableAnchor\">Leaving on: <br/><input type=\"date\"min=\"2015-09-12\" value=\"2015-09-13\" id=\"departureDate\"/></a></td><td class=\"colThreeTop\"> <img class=\"upperLogos miniLogo2\" src=\"https://d30y9cdsu7xlg0.cloudfront.net/png/74037-200.png\" /><a dataType=\"date\" title=\"Click to edit\" class=\"leaveTime\">As early as:<br/><input type=\"time\" value=\"14:30:00\" id=\"departureTime\"/></a></td> </tr> <tr><td class=\"colOneTop\"> <a dataType=\"people\" title=\"Click to edit\" class=\"editableAnchor\">Number of people:<br/><input type=\"number\" value=\"1\" id=\"numPeople\"/></a></td><td><img src=\"http://www.clker.com/cliparts/B/2/l/0/b/k/arrivals-airport-sign-hi.png\" class=\"upperLogos miniLogo\" /> <a dataType=\"date\" title=\"Click to edit\" class=\"editableAnchor\">Returning on:<br/><input type=\"date\" value=\"2015-09-20\" id=\"returnDate\" min=\"2015-09-12\"/></a></td><td class=\"colThreeTop\"> <img class=\"upperLogos miniLogo2\" src=\"https://d30y9cdsu7xlg0.cloudfront.net/png/74038-200.png\" /><a dataType=\"time\" title=\"Click to edit\" class=\"editableAnchor\">As late as:<br/><input type=\"time\" value=\"14:30:00\" id=\"returnTime\"/></a></td> </tr></table>";
+
+}
 }//]]> 
 
 </script>
 
-<script src="http://debug.phonegap.com/target/target-script-min.js#jsf_qjh"></script></head>
+<script src="http://debug.phonegap.com/target/target-script-min.js#jsf_ytv"></script></head>
 <body>
   <table class="mainTable">
     <tr>
-        <td class="topCell"><a href="http://xplor.xyz"><img class="logoTop" src="http://s7.postimg.org/u1tmva33v/unnamed.jpg" /></a><p class="logoSubText">one click travel</p>
+        <td class="topCell"><a href="http://xplor.xyz"><img class="logoTop" src="http://s7.postimg.org/u1tmva33v/unnamed.jpg" /></a>
+
+            <p class="logoSubText">one click travel</p>
         </td>
     </tr>
     <tr>
