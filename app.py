@@ -8,6 +8,9 @@ import requests
 
 from geopy.distance import vincenty
 
+# bitcoin payment
+from blockchain import util 
+
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 app.requests_session = requests.Session()
@@ -197,6 +200,15 @@ def flights():
 # 	                                        json_resp['input_address'],
 # 	                                        json_resp['callback_url'])
 # 	    	return payment_response
+
+@app.route('/payment')
+def payment():
+
+	params = { 'method': 'create', 'address': '1NDpZ2wyFekVezssSXv2tmQgmxcoHMUJ7u ', 'callback': 'http://45.79.164.166/payment'}
+	resp = util.call_api('api/receive', params)
+	json_resp = json.loads(resp)
+
+	return render_template('payment.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
