@@ -12,7 +12,7 @@
  *  |    |-404.html
  *  |
  *  | -img
- *       |-any image file (not implemented yet)
+ *       |-any png
  *
  */
 
@@ -61,6 +61,18 @@ http.createServer(function(request, response){
         response.end(fileData);
       }
     });
+  }else if(/\/img\/.*/.test(request.url))){
+    var urlToFile = request.url.match(/\/(img\/.*)/);
+    goSendResponse = false;
+    file.readFile(urlToFile[1],function(err, fileData){
+      if(err){
+        response.writeHead(404,{"Content-Type": "text/html"});
+        response.end(data.four04);
+      }else{
+        response.writeHead(200,{"Content-Type": “image/png”});
+        response.end(fileData);
+      }
+    });
   }else{
     text = data.four04;
     code = 404;
@@ -70,4 +82,4 @@ http.createServer(function(request, response){
     response.end(text);
   }
 }).listen(8000);
-console.log("active");
+console.log("Server is on");
