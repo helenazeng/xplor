@@ -1,85 +1,81 @@
-/*
- * Joseph Malle -- node.js simple starter for testing
- * Requires file structure as follows:
- * root
- *  |-cssjs
- *  |    |-any css, js, or text file
- *  |
- *  |-files
- *  |    |-index.html
- *  |    |-itinerary.html
- *  |    |-thankyou.html
- *  |    |-404.html
- *  |
- *  | -img
- *       |-any png
- *
- */
+'use strict';
 
-var http = require("http");
-var file = require("fs");
-var data = {};
-file.readFile("files/index.html",function(err,indexData){
-  data.index = indexData;
-});
-file.readFile("files/itinerary.html",function(err,itineraryData){
-  data.itinerary = itineraryData;
-});
-file.readFile("files/thankyou.html",function(err,thankYouData){
-  data.thankYou = thankYouData;
-});
-file.readFile("files/404.html",function(err,four04Data){
-  data.four04 = four04Data;
-});
-http.createServer(function(request, response){
-  var text;
-  var code = 200;
-  var goSendResponse = true;
-  if(request.url == "/"){
-    text = data.index;
-  }else if(request.url == "/thank-you"){
-    text = data.thankYou;
-  }else if(/\/itinerary\/.*/.test(request.url)){
-    text = data.itinerary;
-  }else if(/\/api\/.*/.test(request.url)){
-    text = "api stuff";
-  }else if(/\/cssjs\/.*/.test(request.url)){
-    var urlToFile = request.url.match(/\/(cssjs\/.*)/);
-    goSendResponse = false;
-    file.readFile(urlToFile[1],function(err, fileData){
-      if(err){
-        response.writeHead(404,{"Content-Type": "text/html"});
-        response.end(data.four04);
-      }else{
-        var mimeType = "text/plain";
-        if(/\.js/.test(urlToFile[1])){
-          mimeType = "application/javascript";
-        }else if(/\.css/.test(urlToFile[1])){
-          mimeType = "text/css";
-        }
-        response.writeHead(200,{"Content-Type": mimeType});
-        response.end(fileData);
-      }
+var vultureServices = angular.module('vultureServices', ['ngResource']);
+
+vultureServices.factory('Destination', ['$resource', '$rootScope',
+  function($resource, $rootScope) {
+    return $resource('cities/:city.json', {}, {
+      query: {method: 'GET', params:{city: 'all'}, isArray:true}
     });
-  }else if(/\/img\/.*/.test(request.url))){
-    var urlToFile = request.url.match(/\/(img\/.*)/);
-    goSendResponse = false;
-    file.readFile(urlToFile[1],function(err, fileData){
-      if(err){
-        response.writeHead(404,{"Content-Type": "text/html"});
-        response.end(data.four04);
-      }else{
-        response.writeHead(200,{"Content-Type": “image/png”});
-        response.end(fileData);
-      }
+  }]);
+
+vultureServices.factory('CityCode', ['$resource',
+  function($resource) {
+    return $resource('cities/city-codes.json', {}, {
+      get: {method: 'GET'}
     });
-  }else{
-    text = data.four04;
-    code = 404;
-  }
-  if(goSendResponse){
-    response.writeHead(code,{"Content-Type": "text/html"});
-    response.end(text);
-  }
-}).listen(8000);
-console.log("Server is on");
+  }]);
+
+vultureServices.factory('CityAndAirportCode', ['$resource',
+  function($resource) {
+    return $resource('cities/city-airport-codes.json', {}, {
+      get: {method: 'GET'}
+    });
+  }]);
+
+vultureServices.factory('apiKey', ['$resource',
+  function($resource){
+    return $resource('api-key.json',{
+      get: {method: 'GET'}
+    });
+  }]);
+
+vultureServices.factory('test', [
+  function(){
+    var testArr = [];
+    function populateArr (){
+      testArr = [];
+      for(var i = 0; i < 11; i++){
+        testArr.push(i);
+      }
+    }
+    return {
+      popArr: populateArr,
+      getArr: function(){
+        return testArr;
+      }
+    }
+  }]);
+
+vultureServices.factory('Flights', [ '$http', '$rootScope',
+  
+
+// 'POST', 'https://www.googleapis.com/qpxExpress/v1/trips/search&key={API_KEY}'
+
+// data.request.passengers = {
+//   "infantInLapCount": 0,
+//   "infantInSeatCount": 0,
+//   "childCount": 0,
+//   "seniorCount": 0
+// };
+// data.request.solutions = 1;
+// data.request.refundable = false;
+// var sliceInfo = {};
+// sliceInfo.destination = city;
+// data.request.slice = [sliceInfo];
+// for(var input = 0; input < searchForm.elements.length; input++){
+//   var inputName = searchForm.elements[input].name;
+//   var inputVal = searchForm.elements[input].value;
+
+//   switch(inputName){
+//     case "origin":
+//       sliceInfo[inputName] = getKeyByValue(cities, inputVal);
+//       break;
+//     case "date":
+//       sliceInfo[inputName] = inputVal;
+//       break;
+//     case "passengers":
+//       data.request.passengers.adultCount = parseInt(inputVal);
+//       break;
+//   }
+// }
