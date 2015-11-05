@@ -28,10 +28,12 @@ uber.estimates.price({
 }, function (err, res) {
   if (err) console.error(err);
   else
-    console.log(res);
-  	price = res.value;
+  	price = res.prices[0].estimate;
+    console.log(price);
+    distance = res.prices[0].distance;
+    product_id = res.prices[0].product_id;
 
-  	var post = {origin: "Ann Arbor", destination: "Detroit Metropolitan Airport", price: price,};
+  	var post = {origin: "Ann Arbor", distance: distance, destination: "Detroit Metropolitan Airport", price: price, id: product_id};
 	  var query = connection.query('INSERT INTO uber SET ?', post, function(err, result) {
 		if (err) {
 			throw err

@@ -1,0 +1,149 @@
+var tempData = {
+    Boston: [{
+        type: "flightSet",
+        flightCount: 3,
+        flights: [{
+            type: "flights",
+            legCount: 1,
+            vendor: "Delta",
+            id: "QFSKI3457YB3289475VB2398V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Boston",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 360
+            }]
+        }, {
+            type: "flights",
+            legCount: 1,
+            vendor: "Jet Blue",
+            id: "DFSKI3457YB3289475VB2399V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Boston",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 455
+            }]
+        }, {
+            type: "flights",
+            legCount: 2,
+            vendor: "US Airways",
+            id: "QFSKI3SDFSB3289475VB2398V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Durham",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 900
+            }, {
+                type: "flight",
+                origin: "Durham",
+                leaving: 1450407600000,
+                destination: "Boston",
+                arriving: 1450417600000,
+                priceType: "Round trip",
+                price: 900
+            }]
+        }]
+    }, {
+        type: "uber",
+        origin: "Boston airport",
+        leaving: null,
+        destination: "Hotel",
+        arriving: null,
+        priceType: "estimate",
+        price: 35,
+        vendor: "Uber",
+        id: "IUH546UIO456HKGHQ3SDFS"
+    }, {
+        type: "hotelSet",
+        hotelCount: 2,
+        hotels: [{
+            type: "hotel",
+            location: "Downtown Boston",
+            priceType: "Total",
+            price: 450,
+            vendor: "Hilton",
+            id: "QFSKI3SDGRE66475VB2398V"
+        }, {
+            type: "hotel",
+            location: "Uptown Boston",
+            priceType: "Total",
+            price: 1050,
+            vendor: "Four Seasons",
+            id: "ASFDAEFE66475VB2398V"
+        }]
+    }, {
+        type: "uber",
+        origin: "Hotel",
+        leaving: null,
+        destination: "Airport",
+        arriving: null,
+        priceType: "estimate",
+        price: 35,
+        vendor: "Uber",
+        id: "IUH546UIO456HKGHQ3SDFS"
+    }, {
+        type: "flightSet",
+        flightCount: 3,
+        flights: [{
+            type: "flights",
+            legCount: 1,
+            vendor: "Delta",
+            id: "QFSKI3457YB3289475VB2398V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Boston",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 360
+            }]
+        }, {
+            type: "flights",
+            legCount: 1,
+            vendor: "Jet Blue",
+            id: "DFSKI3457YB3289475VB2399V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Boston",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 455
+            }]
+        }, {
+            type: "flights",
+            legCount: 2,
+            vendor: "US Airways",
+            id: "QFSKI3SDFSB3289475VB2398V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Durham",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 900
+            }, {
+                type: "flight",
+                origin: "Durham",
+                leaving: 1450407600000,
+                destination: "Boston",
+                arriving: 1450417600000,
+                priceType: "Round trip",
+                price: 900
+            }]
+        }]
+    }]
+};
