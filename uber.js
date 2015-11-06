@@ -21,15 +21,23 @@ var uber = new Uber({
   name: 'uber_info'
 });
 
+var hotel_latitude = 'SELECT latitude FROM hotel_info';
+var hotel_longitude = 'SELECT longitude FROM hotel_info';
+connection.query(hotel_latitude, hotel_longitude, function(err, rows, fields) {
+    if (err) throw err;
+    for (var i in rows) {
+        console.log('Post Titles: ', rows[i]);
+    }
+});
 // ann arbor to DTW
 uber.estimates.price({ 
+
   start_latitude: 42.2751536, start_longitude: -83.7437474, 
   end_latitude: 42.2161722, end_longitude: -83.3575729
 }, function (err, res) {
   if (err) console.error(err);
   else
   	price = res.prices[0].estimate;
-    console.log(price);
     distance = res.prices[0].distance;
     product_id = res.prices[0].product_id;
 
