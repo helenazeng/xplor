@@ -1,0 +1,1519 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>main - demo</title>
+  
+  
+  
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+  <style type='text/css'>
+        /*
+General
+*/
+ * {
+    box-sizing: border-box;
+    transition: all 0.4s ease;
+    font-family:verdana, sans-serif;
+}
+.noSelect {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+body {
+    width: 100%;
+    overflow-x: hidden;
+    margin: 0px;
+    padding: 0px;
+    background-color:gray;
+}
+/*
+Top n bottom
+*/
+ #topDiv, #payDiv {
+    z-index: 9000000;
+}
+#topDiv {
+    position: fixed;
+    top:0px;
+    transition: all 0.4s ease;
+    left: 0px;
+    right: 0px;
+}
+#topDiv.atStart {
+    bottom: 0px;
+    background-color: white;
+}
+#topDiv.atTop {
+    top: 0px;
+    height: 55px;
+    background-color: navy;
+    box-shadow: 0px 2px 10px 1px black;
+}
+#mainSearch {
+    position: fixed;
+    font-size: 200%;
+    transition: all 0.4s ease;
+    border-radius: 0px;
+}
+#topDiv.atStart #mainSearch {
+    left: 20%;
+    right: 20%;
+    height: 55px;
+    width: 60%;
+    top: 50%;
+}
+#topDiv.atTop #mainSearch {
+    left: 0%;
+    right: 0%;
+    width: calc(100% - 56px);
+    height: 55px;
+    top: 0%;
+}
+#mOut {
+    position: absolute;
+    height: 55px;
+    width: 55px;
+    background-color: navy;
+    color: red;
+    font-size: 200%;
+    text-align: center;
+    line-height: 55px;
+    font-weight: 900;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s;
+    top: 0px;
+}
+.box-shadow-menu {
+  position: relative;
+  padding-left: 1.25em;
+}
+.box-shadow-menu:before {
+    content: "";
+    position: absolute;
+    left: 7.857142px;
+    top: 7.857142px;
+    width: 39.285714px;
+    height: 7.857142px;
+    background: white;
+    box-shadow: 0 15.714285px 0 0 white, 0 31.428571px 0 0 white;
+}
+#topDiv.atStart #mOut {
+    right: -55px;
+}
+#topDiv.atTop #mOut {
+    right: 0px;
+}
+#mainSocialmedia {
+    position: absolute;
+    transition: all 0.4s ease;
+    left: 20%;
+    right: 20%;
+    height: 20%;
+    width: 60%;
+    background-color: gray;
+}
+#topDiv.atStart #mainSocialmedia {
+    top: 80%;
+}
+#topDiv.atTop #mainSocialmedia {
+    top: 2000%;
+}
+#mainLogo {
+    position: absolute;
+    background-color: navy;
+    color: white;
+    width: 50%;
+    left: 25%;
+    right: 25%;
+    height: 80px;
+    transition: all 0.4s ease;
+}
+#topDiv.atStart #mainLogo {
+    top: 20%;
+}
+#topDiv.atTop #mainLogo {
+    top: -200%;
+}
+/*
+menu
+*/
+#mOut.confPage{
+    display: none;
+}
+ #menuContainer {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    background-color: gray;
+    opacity: 0.8;
+    transition: opacity 0.4s;
+    z-index: 1000000000;
+}
+#menuContainer.showing {
+    left: 0px;
+}
+#menuContainer.hidden {
+    left: 100%;
+}
+#menuMain {
+    position: fixed;
+    height: 100%;
+    width: 80%;
+    top: 0px;
+    background-color: white;
+    transition: all 0.4s;
+    z-index: 1000000001;
+    overflow-y: auto;
+}
+#menuMain.showing {
+    right: 0%;
+}
+#menuMain.hidden {
+    right: -100%;
+}
+#menuMainTable {
+    width: 100%;
+}
+.tableWays {
+    border: 1px solid blue;
+    width: 30%;
+    margin-left: 2%;
+    margin-top: 2%;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: black;
+}
+input.tableWays[type="radio"]{
+    display: none;
+}
+input.tableWays[type="radio"]:checked+label {
+    color: blue;
+    cursor: initial;
+}
+.menuInputs {
+    width: 100%;
+    height: 5%;
+    display: block;
+    box-sizing: border-box;
+}
+.menuDateGraph {
+    width: 100%;
+    background-color:gray;
+    transition: all 0.2s linear;
+    overflow: hidden;
+}
+
+#mD1 {
+    opacity: 0;
+    width: 0px;
+}
+
+#radioButtoMenu_roundTrip:checked + label + #menuMainTable #mD1{
+    opacity: 1;
+    width: 100%;
+}
+
+/*
+Card holder
+*/
+ #cardHolder {
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+    top: 55px;
+    left:0px;
+    overflow-x: hidden;
+}
+#cardHolder::-webkit-scrollbar {
+    display: none;
+}
+/*
+Draggy
+*/
+ .draggyGrandParent {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100px;
+    background-color: darkblue;
+    overflow: hidden;
+}
+.draggyGrandParentX{
+    position: absolute;
+    top: 5px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    content: "X";
+    font-size: 20px;
+    color: red;
+    font-weight: 700;
+    transition: all 0.4s;
+    transform-origin:  40% 60%;
+    -webkit-transform-origin:  40% 60%;
+    -ms-transform-origin:  40% 60%;
+    -moz-transform-origin:  40% 60%;
+    -o-transform-origin:  40% 60%;
+}
+.draggyGrandParentX:hover{
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    cursor: pointer;
+}
+.draggyGrandParent:last-of-type{
+    cursor: pointer;
+    color: green;
+}
+.draggyGrandParent:last-of-type .draggyGrandParentX {
+    display: none;
+}
+.draggyParent {
+    position: absolute;
+    width: 1000%;
+    height: 100px;
+}
+.draggy {
+    background-color: white;
+    width: 10%;
+    height: 96px;
+    position: relative;
+    display: inline-block;
+    float: left;
+    margin: 2px;
+}
+.draggyMiddleElement {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.transitionSlow {
+    transition: all 0.5s;
+}
+.draggyGrandParent:first-of-type,.draggyGrandParent.confPage:first-of-type {
+    margin-top: 60px;
+}
+.draggyGrandParent:last-of-type, .draggyGrandParent.confPage:last-of-type {
+    margin-bottom: 45px;
+}
+.draggyDesktop {
+    height: 100%;
+    width: 50px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 1000;
+    transition: all 0.2s;
+    background-color: gray;
+    opacity: 0.5;
+    top:0px;
+}
+.draggyDesktopGoLeft {
+    left: -40px;
+}
+.draggyDesktopGoLeft:hover {
+    left: -25px;
+}
+.draggyDesktopGoRight {
+    right: -40px;
+}
+.draggyDesktopGoRight:hover {
+    right: -25px;
+}
+.draggyDesktopGoLeft:after {
+    content:"\2039";
+    position: relative;
+    font-size: 50px;
+    line-height: 50px;
+    top: 20%;
+    top: calc(50% - 25px);
+    left: 35px;
+}
+.draggyDesktopGoRight:before {
+    content:"\203A";
+    position: relative;
+    font-size: 50px;
+    line-height: 50px;
+    top: 20%;
+    top: calc(50% - 25px);
+    left: 0px;
+}
+/*
+Card styling
+*/
+ .cardLeft {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    width: 20%;
+    left: 0px;
+    top: 0px;
+    background-position: center center;
+    background-size: cover;
+}
+.cardCenter {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    width: 60%;
+    left: 20%;
+    top: 0px;
+}
+.cardTitle {
+    font-size: 24px;
+    line-height: 24px;
+}
+.cardRight {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    width: 20%;
+    left: 80%;
+    top: 0px;
+}
+.cardPrice {
+    position: absolute;
+    line-height: 10%;
+    top: 50%;
+    left: 10%;
+}
+.USDCurrency:before {
+    content:"$";
+}
+/*
+
+Loading
+
+*/
+ #loaderHolder {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    transition: all 0.4s;
+    left: calc(50% - 45px);
+    top: calc(50% - 45px);
+}
+#loaderHolder.loaderShowing {
+    opacity: 1;
+}
+#loaderHolder.loaderHidden {
+    opacity: 0;
+}
+.loaderTable {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+.loaderDiv {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    animation: loaderBorders 1s infinite;
+    animation-timing-function: ease-in-out;
+    border-radius: 5px;
+}
+.loaderDic.loading7 {
+    animation-delay: 0s;
+}
+.loaderDiv.loading4, .loaderDiv.loading8 {
+    animation-delay: 0.20s;
+}
+.loaderDiv.loading1, .loaderDiv.loading5, .loaderDiv.loading9 {
+    animation-delay: 0.4s;
+}
+.loaderDiv.loading2, .loaderDiv.loading6 {
+    animation-delay: 0.60s;
+}
+.loaderDiv.loading3 {
+    animation-delay: 0.80s;
+}
+@keyframes loaderBorders {
+    0% {
+        border-radius: 0%;
+        transform: scale(1);
+    }
+    50% {
+        border-radius: 30px;
+        transform: scale(0.01);
+    }
+    100% {
+        border-radius: 0%;
+        transform: scale(1);
+    }
+}
+
+/*
+ *
+ * Vendors
+ *
+ */
+ .vendorDelta {
+    background-image: url("https://d3o54sf0907rz4.cloudfront.net/airline-logos/v3/centered/bugs/png/128x128/dl-logo-bug.png")
+}
+.vendorJetBlue {
+    background-image: url("http://www.sandpointc.com/wp-includes/customers/logos/logo_JetBlue.png")
+}
+.vendorUSAirways {
+    background-image: url("https://board-production.s3.amazonaws.com/logos/2955/medium_US_Airways_Logo.JPG")
+}
+.vendorUber {
+    background-image: url("https://pbs.twimg.com/profile_images/618246564612435968/Uxi_Na-h.jpg")
+}
+.vendorHilton {
+    background-image: url("https://upload.wikimedia.org/wikipedia/en/thumb/f/fb/Hilton_Hotels_logo.svg/50px-Hilton_Hotels_logo.svg.png")
+}
+.vendorFourSeasons {
+    background-image: url("http://www.logodalil.com.eg/images/Hotels_logos/Fourseasons.jpg");
+}
+
+/*
+ * conf page
+ */
+
+.confPage{
+    transition: all 0s;
+}
+.draggyDesktop.confPage,.draggyGrandParentX.confPage{
+    display: none;
+}
+.draggy.confPage{
+    opacity:0;
+}
+.draggy.selectedDraggy{
+    opacity: 1;
+}
+.draggyGrandParent.confPage{
+    background-color:inherit;
+    padding: 2px;
+    margin: 0px;
+    margin-right: 5px;
+    left:-10px;
+}
+.draggyParent.confPage{
+    padding-left: 30px;
+    padding-right:5px;
+}
+
+.draggy.confPage{
+    box-shadow: 0px 0px 3px 4px gray inset;
+}
+.confPage.draggyGrandParent::before{
+    position: absolute;
+    height: 100%;
+    content: "";
+    width: 10px;
+    background-color: gray;
+    border: 5px solid lightgray;
+    left: 20px;
+    top: 0px;
+    display: block;
+    box-sizing: border-box;
+}
+.confPage.draggyGrandParent:first-of-type::before{
+    height: 50%;
+    top: 50%;
+}
+.confPage.draggyGrandParent:nth-last-child(2){
+    margin-bottom: 60px;
+}
+.confPage.draggyGrandParent:last-of-type::before{
+    height: 50%;
+}
+.confPage.draggyGrandParent:nth-last-child(2)::before{
+    height: 50%;
+}
+.confPage.draggyGrandParent::after{
+    position: absolute;
+    height: 20px;
+    content: "";
+    width: 20px;
+    background-color: gray;
+    border: 5px solid lightgray;
+    left: 15px;
+    top: 45%;
+    top: calc(50% - 5px);
+    display: block;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+#topDiv.atTop.confPage #mainSearch.confPage{
+    width: 100%;
+}
+
+/*
+ *
+ * Pay
+ *
+ */
+.cardTitle.pay:before{
+    content: "Continue";
+}
+.confPage.draggyGrandParent:last-of-type{
+    display: none;
+}
+#menuMain.confPage{
+    left: -110%;
+    transition: all 0.2s;
+}
+#payMenuSide {
+    top: 55px;
+    height: calc(100% - 55px);
+    right: -100%;
+    position: fixed;
+    background-color: white;
+    width: 200px;
+    transition: all 0.2s;
+}
+
+#payMenuSide.confPage{
+    right: 0px;
+}
+#finalPayButton{
+    width: 200px;
+    height: 50px;
+    right: calc(50% - 100px);
+    position: absolute;
+    bottom: 0px;
+    border-radius: 5px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+}
+/*
+Responsive
+*/
+#leftMenu{
+    position: absolute;
+    height: calc(100% - 55px);
+    top: 55px;
+    width: 400px;
+    background-color: white;
+    transition: all 0.4s;
+}
+#finalURLDiv{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+ @media screen and (max-width: 600px) {
+    /* mobile */
+    .mobiHide {
+        display: none;
+    }
+    #cardHolder, .draggyGrandParent {
+        width: 100%;
+    }
+     #leftMenu{
+         left: -100%;
+         height: 100%;
+         top: 0px;
+         width: 25px;
+         overflow-x: hidden;
+     }
+     #payMenuSide.confPage{
+         right: 0px;
+         left: 0px;
+         bottom: 0px;
+         top: auto;
+         height: 50px;
+         width: 100%;
+         box-shadow: 0px -2px 10px 1px black;
+     }
+     #finalPayButton {
+         right: 10px;
+     }
+     #finalURLDiv{
+         margin-top: 0px;
+         margin-left: 0px;
+     }
+}
+/*
+Responsive
+*/
+ @media screen and (max-width: 1550px) and (min-width: 600px) {
+    /* desktop */
+    .draggyGrandParent {
+        width: 100%;
+    }
+    #cardHolder {
+        margin-left: 2%;
+        width: 65%;
+    }
+     #leftMenu{
+         left: -100%;
+         height: 100%;
+         top: 0px;
+     }
+    #menuMain, #menuMain.hidden, #menuMain.showing{
+        top: 55px;
+        width: 30%;
+        max-width: 400px;
+        height: calc(100% - 55px);
+    }
+    #topDiv.atTop ~ #menuMain, #topDiv.atTop ~ #menuMain.hidden, #topDiv.atTop ~ #menuMain.showing{
+        right: 0px;
+    }
+    #topDiv.atStart ~ #menuMain, #topDiv.atStart ~ #menuMain.hidden, #topDiv.atStart ~ #menuMain.showing{
+        right: -100%;
+    }
+    #topDiv.atStart #mainSearch{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #topDiv.atTop #mainSearch{
+        width: 65%;
+        left: 2%;
+    }
+     #mOut{
+         display: none;
+     }
+     #topDiv.atTop #mainLogo{
+        right: 0px;
+        left: auto;
+        top: 0px;
+        height: 55px;
+        width: 30%;
+        max-width: 400px;
+     }
+     
+     #topDiv.atTop #mainSocialmedia{
+         display: none;
+     }
+ }
+@media screen and (min-width: 1550px) {
+    /* desktop */
+     #topDiv.atTop #mainSocialmedia{
+         display: none;
+     }
+    #cardHolder, .draggyGrandParent {
+        width: 600px;
+    }
+    #menuMain, #menuMain.hidden, #menuMain.showing{
+        top: 55px;
+        width: 30%;
+        max-width: 400px;
+        height: calc(100% - 55px);
+    }
+    #topDiv.atTop ~ #menuMain, #topDiv.atTop ~ #menuMain.hidden, #topDiv.atTop ~ #menuMain.showing{
+        right: calc(50% - 750px);
+    }
+    #topDiv.atStart ~ #menuMain, #topDiv.atStart ~ #menuMain.hidden, #topDiv.atStart ~ #menuMain.showing{
+        right: -100%;
+    }
+    #topDiv.atStart #mainSearch{
+        width: 60%;
+    }
+    #topDiv.atTop #mainSearch{
+        width: 600px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    #topDiv.atTop #mainLogo{
+        top:0px;
+        left: calc(50% - 775px);
+        height: 55px;
+        width: 450px;
+    }
+     #mOut{
+         display: none;
+     }
+     
+     #leftMenu{
+         left: calc(50% - 750px);
+     }
+    #topDiv.atStart ~ #leftMenu{
+        left: -100%;
+    }
+ }
+
+  </style>
+  
+
+
+
+<script type='text/javascript'>//<![CDATA[
+window.onload=function(){
+/* xplor
+
+Do do list
+- make menu work
+- make pay button at the bottom
+- create classes for selected frame
+
+*/
+
+// testing (more temp data at the bottom)
+var viewPortTag = document.createElement('meta');
+viewPortTag.id = 'viewport';
+viewPortTag.name = 'viewport';
+viewPortTag.content = 'width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+document.getElementsByTagName('head')[0].appendChild(viewPortTag);
+
+function updateTotalPrice(){
+    var els = document.querySelectorAll(".selectedDraggy .cardPrice");
+    var total = 0;
+    for(var i = 0; i < els.length - 1; i++){
+        total += parseFloat(els[i].innerText);
+    }
+    document.getElementById("totalPrice").innerHTML = total;
+    document.getElementById("totalPrice2").innerHTML = total;
+}
+
+document.getElementById("finalURLDiv").addEventListener("click",function(){
+    var url = document.getElementById("finalURLShare");
+    url.selectionStart = 0;
+    url.selectionEnd = url.value.length;
+    var resp = false;
+    try {
+        resp = document.execCommand('copy');
+    } catch (err) {
+        resp = false;
+    }
+    if (resp == false){
+        if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+            document.getElementById("finalURLSpan").innerHTML = "⌘+C to copy";
+        }else{
+            document.getElementById("finalURLSpan").innerHTML = "Cntr+C to copy";
+        }
+    }else{
+        document.getElementById("finalURLSpan").innerHTML = "Link copied";
+    }
+},true);
+
+// INPUT:  a string
+// OUTPUT: a string containing the top match for the input based on listOfPlaces
+function relevantList(str) {
+    var retL;
+    for (var i = 0; i < listOfPlaces.length; i++) {
+        if (listOfPlaces[i].toLowerCase().indexOf(str.toLowerCase()) == 0) {
+            retL = listOfPlaces[i];
+            break;
+        }
+    }
+    return retL;
+}
+
+document.getElementById("finalPayButton").addEventListener("click", function(){
+    alert("Final Pay Clicked");
+});
+// Runs right away, gives click event to text box
+document.getElementById("mainSearch").addEventListener("click", function (evt) {
+    mainToItinerary(evt);
+}, false);
+
+// holds global data
+var globalDraggy = {};
+var globalXplor = {};
+
+// currently the currency class is set to USDCurrency, but it might become a function later
+globalXplor.currency = "USDCurrency";
+
+// this is where we will store itinerary info (this step is technically irrelevant)
+globalXplor.draggyGPList = [];
+
+// handles keypress on main search
+document.getElementById("mainSearch").addEventListener("keyup", function (evt) {
+    if (evt.which > 64 && evt.which < 123) {
+        var mS = document.getElementById("mainSearch");
+        var str = mS.value;
+        if (str.length) {
+            var ret = relevantList(str);
+            if (ret) {
+                mS.value += ret.slice(str.length, ret.length)
+                mS.selectionStart = str.length;
+                mS.selectionEnd = ret.length;
+            }
+        }
+    }
+    setXplorData();
+}, false);
+
+// on window resize, make all the sliders look good
+//var doit;
+function recenter(){
+    var draggies = document.getElementsByClassName("draggyParent");
+	for(var i = 0; i < draggies.length; i++){
+        if(draggies[i].children.length > 1){
+            // note: all the extra b.s. is to allow classNames with or without confPage
+        	makeSliderMove(draggies[i], 1);
+        }
+    }
+}
+
+
+
+//menu in and out
+document.getElementById("mOut").addEventListener("click", function () {
+    document.getElementById("menuContainer").className = "showing";
+    document.getElementById("menuMain").className = "noSelect showing";
+}, false);
+document.getElementById("menuContainer").addEventListener("click", function () {
+    document.getElementById("menuContainer").className = "hidden";
+    document.getElementById("menuMain").className = "noSelect hidden";
+}, false);
+// the next two functions handle switching page styles
+function mainToItinerary() {
+    document.getElementById("mainSearch").removeEventListener("click", mainToItinerary);
+    document.getElementById("mainSearch").placeholder = " I'm going to...";
+    document.getElementById("topDiv").className = "atTop";
+    document.getElementById("mainSearch").focus();
+    setTimeout(function () {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        document.getElementById("mainSearch").scrollIntoView();
+    }, 400);
+}
+
+// draggy controls
+function draggyDownFun(evt) {
+    globalDraggy[evt.currentTarget.className.trim()].dragging = true;
+    globalDraggy[evt.currentTarget.className.trim()].goalDiff = evt.currentTarget.offsetLeft - evt.touches[0].clientX;
+    globalDraggy[evt.currentTarget.className.trim()].origLeft = evt.currentTarget.offsetLeft;
+}
+
+function draggyMoveFun(evt) {
+    if (globalDraggy[evt.currentTarget.className].dragging) {
+        var newPos = globalDraggy[evt.currentTarget.className.trim()].goalDiff + evt.touches[0].clientX;
+        if (newPos > globalDraggy[evt.currentTarget.className.trim()].origLeft + 50 || newPos < globalDraggy[evt.currentTarget.className.trim()].origLeft - 50) {
+            evt.currentTarget.style.left = newPos + 'px';
+        }
+    }
+}
+
+function draggyUpFun(evt) {
+    globalDraggy[evt.currentTarget.className.trim()].dragging = false;
+    // did they swipe right or left?
+    var minSwipe = 100;
+    if (evt.currentTarget.offsetLeft > globalDraggy[evt.currentTarget.className.trim()].origLeft + minSwipe) {
+        swipeRight(evt.currentTarget, 20);
+    } else if (evt.currentTarget.offsetLeft < globalDraggy[evt.currentTarget.className.trim()].origLeft - minSwipe) {
+        swipeLeft(evt.currentTarget, 20);
+    } else {
+        makeSliderMove(evt.currentTarget, 20, globalDraggy[evt.currentTarget.className.trim()].showing);
+    }
+}
+
+// INPUT no input
+// OUTPUT the width of a card
+// returns 300 on fail
+function currentSwipeDist() {
+    var dGP0 = document.getElementsByClassName("draggyGrandParent")[0];
+    var rect = dGP0.getBoundingClientRect();
+    var width = rect.right - rect.left;
+    return width;
+}
+
+function makeSliderMove(sliderEl, iterations) {
+    var current = sliderEl.offsetLeft;
+    var target = -1 * currentSwipeDist() * globalDraggy[sliderEl.className.replace("confPage","").trim()].showing;
+    var increment = (target - current) / iterations;
+    var property = sliderEl;
+
+    function animateLeft() {
+        current += increment;
+        property.style.left = current + "px";
+        if (Math.abs(current - target) > 15) {
+            requestAnimationFrame(animateLeft);
+        } else {
+            property.style.left = target + "px";
+            setTimeout(function(){
+                var babyDraggies = sliderEl.children;
+                for(var i = 0; i < babyDraggies.length; i++){
+                    removeClass(babyDraggies[i], "selectedDraggy");
+                }
+                addClass(babyDraggies[globalDraggy[sliderEl.className.replace("confPage","").trim()].showing], "selectedDraggy");
+                updateTotalPrice();
+            },500);
+        }
+    }
+    requestAnimationFrame(animateLeft);
+}
+
+function swipeRight(el, it) {
+    globalDraggy[el.className].showing = globalDraggy[el.className].showing - 1;
+    globalDraggy[el.className].showing = Math.max(0, globalDraggy[el.className].showing);
+    makeSliderMove(el, it);
+}
+
+function swipeLeft(el, it) {
+    globalDraggy[el.className].showing = globalDraggy[el.className].showing + 1;
+    globalDraggy[el.className].showing = Math.min(el.children.length - 1, globalDraggy[el.className].showing);
+    makeSliderMove(el, it);
+}
+
+// card makers
+
+// slider builder
+// INPUT: a dataObject with attribues:
+//  .leftClass -- the class of the leftmost div.  Usually for inserting a logo from CSS
+//  .title
+//  .type -- for now, flight, hotel, or uber
+//  .subtitle -- a caption
+//  .price -- the price to be shown on the right
+//  .currency -- for now always set to USDCurrency
+// OUTPUT: a document.createElement("div") that goes inside a 
+function insideCardMaker(dataObject) {
+    var frag = document.createElement("div");
+    frag.className = "draggyMiddleElement";
+    if(dataObject.type == "pay"){
+        frag.addEventListener("click", goToConfPage, true);
+    }
+    var left = document.createElement("div");
+    left.className = "cardLeft " + dataObject.leftClass;
+    frag.appendChild(left);
+    var center = document.createElement("div");
+    center.className = "cardCenter";
+    var title = document.createElement("h1");
+    title.appendChild(document.createTextNode(dataObject.title));
+    title.className = "cardTitle " + dataObject.type;
+    center.appendChild(title);
+    var subtitle = document.createElement("div");
+    subtitle.appendChild(document.createTextNode(dataObject.subtitle));
+    subtitle.className = "cardSubtitle " + dataObject.type;
+    center.appendChild(subtitle);
+    frag.appendChild(center);
+    var right = document.createElement("div");
+    right.className = "cardRight";
+    var price = document.createElement("div");
+    price.appendChild(document.createTextNode(dataObject.price));
+    price.priceData = dataObject.price;
+    price.activeData = false;
+    price.className = "cardPrice " + dataObject.currency;
+    if(dataObject.type == "pay"){
+        price.id = "totalPrice";
+    }
+    right.appendChild(price);
+    frag.appendChild(right);
+    return frag;
+}
+// INPUT: a document.createElement (not enforced)
+// OUTPUT: a draggy grandparent without any cards
+function noDragDraggyMaker(childObjArray) {
+    var gpDObj = {};
+    gpDObj.class = "noSelect draggyGrandParent";
+    gpDObj.child = childObjArray;
+    return makeElement(gpDObj);
+}
+
+// INPUT: an array of objects (possibly from insideCardMaker)
+// OUTPUT: a draggy grandparent
+var globalDraggyMakerTempVar = 0;
+function draggyMaker(childObjArray) {
+    var gpDObj = {};
+    var gLObj = {};
+    var pDObj = {};
+    var gRObj = {};
+    var DObj = {};
+    gpDObj.class = "noSelect draggyGrandParent";
+    gLObj.class = "noSelect mobiHide draggyDesktop draggyDesktopGoLeft";
+    gRObj.class = "noSelect mobiHide draggyDesktop draggyDesktopGoRight";
+    pDObj.class = "noSelect draggyParent draggyParentGlobalTempVar" + globalDraggyMakerTempVar++;
+    DObj.class = "noSelect draggy";
+    var draggyElArray = [];
+    for (var i = 0; i < childObjArray.length; i++) {
+        // might remove the if clause and go with case 1 every time
+        if (childObjArray[i] instanceof DocumentFragment) {
+            draggyElArray.push(childObjArray[i]);
+        } else {
+            DObj.child = childObjArray[i];
+            draggyElArray.push(makeElement(DObj));
+        }
+    }
+    pDObj.child = draggyElArray;
+    var parent = makeElement(pDObj);
+    globalDraggy[parent] = {};
+    globalDraggy[parent].dragging = false;
+    globalDraggy[parent].showing = 0;
+    var xelement = document.createElement("div");
+    xelement.className = "xelement draggyGrandParentX";
+    var innerX = document.createTextNode("X");
+    xelement.appendChild(innerX);
+    xelement.addEventListener("click", function(evt){
+        xelementClickFun(evt);
+    });
+    if(childObjArray.length > 1){
+        parent.addEventListener('touchstart', draggyDownFun, false);
+        parent.addEventListener('touchmove', draggyMoveFun, false);
+        parent.addEventListener('touchend', draggyUpFun, false);
+        var left = makeElement(gLObj);
+        left.addEventListener("mouseup", function (evt) {
+            // makes sense if you think about it
+            swipeRight(evt.currentTarget.nextElementSibling, 20);
+            evt.stopPropagation();
+        }, true);
+        var right = makeElement(gRObj);
+        right.addEventListener("mouseup", function (evt) {
+            // makes sense if you think about it
+            swipeLeft(evt.currentTarget.previousElementSibling, 20);
+            evt.stopPropagation();
+        }, true);
+        gpDObj.child = [left, parent, right, xelement];
+    }else{
+        gpDObj.child = [parent, xelement];
+    }
+    return makeElement(gpDObj);
+}
+
+function xelementClickFun(evt){
+    var el = evt.currentTarget.parentNode;
+    el.parentNode.removeChild(el);
+    updateTotalPrice();
+}
+
+// INPUT: very flexible
+// OUTPUT: element
+// NOTE: don't use this.  This function only exists to remove repetitive code in other functions
+function makeElement(object) {
+    var elType = object.type || "div";
+    var el = document.createElement(elType);
+    if (object.class) {
+        el.className = object.class;
+    }
+    if (object.id) {
+        el.id = object.id;
+    }
+    if (object.child) {
+        if (object.child instanceof HTMLElement) {
+            el.appendChild(object.child);
+        } else if (object.child instanceof Array) {
+            for (var k = 0; k < object.child.length; k++) {
+                el.appendChild(object.child[k]);
+            }
+        } else if (typeof object.child == "string") {
+            var txtNode = document.createTextNode(object.child);
+            el.appendChild(txtNode);
+        }
+    }
+    return el;
+}
+/*
+Loader
+*/
+function showLoader() {
+    function makeLoader() {
+        var makeLoaderTable = document.createElement("table");
+        makeLoaderTable.className = "loaderTable";
+        var makeLoaderTr = document.createElement("tr");
+        var makeLoaderTd = document.createElement("td");
+        var makeLoaderDiv = document.createElement("div");
+        makeLoaderDiv.className = "loaderDiv loading";
+        for (var tr = 0; tr < 3; tr++) {
+            var nextTr = makeLoaderTr.cloneNode();
+            for (var td = 0; td < 3; td++) {
+                var nextTd = makeLoaderTd.cloneNode();
+                var nextDiv = makeLoaderDiv.cloneNode();
+                nextDiv.className += (3 * tr + td + 1).toString();
+                nextTd.appendChild(nextDiv);
+                nextTr.appendChild(nextTd);
+            }
+            makeLoaderTable.appendChild(nextTr);
+        }
+        return makeLoaderTable;
+    }
+    var loaderHolder = document.getElementById("loaderHolder");
+    loaderHolder.innerHTML = "";
+    loaderHolder.appendChild(makeLoader());
+    addClass(loaderHolder, "loaderShowing");
+    removeClass(loaderHolder, "loaderHidden");
+}
+
+function hideLoader() {
+    var loaderHolder = document.getElementById("loaderHolder");
+    removeClass(loaderHolder, "loaderShowing");
+    addClass(loaderHolder, "loaderHidden");
+    setTimeout(function () {
+        loaderHolder.innerHTML = "";
+    }, 400);
+}
+// data stuff
+/*
+    dataObject
+     .leftClass
+     .title
+     .type
+     .subtitle
+     .price
+     .currency
+*/
+
+// INPUT:  an object of type uber
+// OUTPUT: an object ready to be a card dataObject
+function uberReader(uberObj) {
+    var uRdO = {};
+    uRdO.price = uberObj.price;
+    uRdO.leftClass = "vendorUber";
+    uRdO.title = "Uber";
+    uRdO.subtitle = "Uber from " + uberObj.origin + " to " + uberObj.destination;
+    uRdO.type = "uber";
+    uRdO.currency = globalXplor.currency;
+    return uRdO;
+}
+
+// INPUT:  an object of type uber
+// OUTPUT: an object ready to be a card dataObject
+function hotelReader(hotelObj) {
+    var hRdO = {};
+    hRdO.price = hotelObj.price;
+    hRdO.leftClass = "vendor" + s(hotelObj.vendor);
+    hRdO.title = hotelObj.vendor;
+    hRdO.subtitle = "Stay in " + hotelObj.location;
+    hRdO.type = "hotel";
+    hRdO.currency = globalXplor.currency;
+    return hRdO;
+}
+
+// INPUT:  an object of type flights
+// OUTPUT: an object ready to be a card dataObject
+function flightReader(flightObj) {
+    var fRdO = {};
+    fRdO.price = 0;
+    fRdO.leftClass = "vendor" + s(flightObj.vendor);
+    fRdO.title = "Flight";
+    fRdO.subtitle = "From " + flightObj.legs[0].origin + " to " + flightObj.legs[flightObj.legCount - 1].destination;
+    fRdO.type = "flight";
+    fRdO.currency = globalXplor.currency;
+    for (var i = 0; i < flightObj.legCount; i++) {
+        fRdO.price += flightObj.legs[i].price;
+    }
+    return fRdO;
+}
+
+// INPUT:  a string
+// OUTPUT: a string without spaces
+function s(str) {
+    return str.replace(/\s/g, "");
+}
+
+// INPUT: object of type flightSet
+// OUTPUT: a draggyGrandParent containing the flights
+function flightGPC(flightSet) {
+    var objList = [];
+    for (var i = 0; i < flightSet.flightCount; i++) {
+        objList.push(insideCardMaker(flightReader(flightSet.flights[i])));
+    }
+    return draggyMaker(objList);
+}
+
+// INPUT: object of type hotelSet
+// OUTPUT: a draggyGrandParent containing the hotels
+function hotelGPC(hotelSet) {
+    var objList = [];
+    for (var i = 0; i < hotelSet.hotelCount; i++) {
+        objList.push(insideCardMaker(hotelReader(hotelSet.hotels[i])));
+    }
+    return draggyMaker(objList);
+}
+
+// INPUT: object of type uber
+// OUTPUT: a draggyGrandParent containing the uber
+// NOTE the standard may change for this
+function uberGPC(uberSet) {
+    return draggyMaker([insideCardMaker(uberReader(uberSet))]);
+}
+
+// INPUT: probably nothing
+// OUTPUT: a draggyGrandParent containing the payinfo
+// NOTE not close to done
+function payGPC(){
+    var tmpData = {};
+    tmpData.leftClass = "payLeftClass";
+    tmpData.title = ""; // done by css
+    tmpData.type = "pay";
+    tmpData.subtitle = "";
+    tmpData.price = 0;
+    tmpData.currency = "USDCurrency";
+    // note that final implementation will not use
+    // insideCardMaker so pretty much all of this
+    // is bs
+    return draggyMaker([insideCardMaker(tmpData)]);
+}
+// INPUT: none, but reads from globalXplor.data
+// OUTPUT: none, but sets globalXplor.draggyGPList
+// NOTE this will add it's payload to cardholder.
+function setXplorData() {
+    var cH = document.getElementById("cardHolder");
+    cH.innerHTML = ""; // clear cardHolder
+    globalXplor.draggyGPList = []; // empty the list
+    var implement = globalXplor.data[globalCheatOnWhereYoureGoing];
+    for (var i = 0; i < implement.length; i++) {
+        switch (implement[i].type) {
+            case "flightSet":
+                globalXplor.draggyGPList.push(flightGPC(implement[i]));
+                break;
+            case "hotelSet":
+                globalXplor.draggyGPList.push(hotelGPC(implement[i]));
+                break;
+            case "uber":
+                globalXplor.draggyGPList.push(uberGPC(implement[i]));
+                break;
+            default:
+                console.log("switched");
+                break;
+        }
+    }
+    globalXplor.draggyGPList.push(payGPC("pay here"));
+    for (var i = 0; i < globalXplor.draggyGPList.length; i++) {
+        cH.appendChild(globalXplor.draggyGPList[i])
+    }
+    var draggies = document.getElementsByClassName("draggyParent");
+    globalDraggy = {};
+	for(var i = 0; i < draggies.length; i++){
+        globalDraggy[draggies[i].className] = {};
+        globalDraggy[draggies[i].className].dragging = false;
+        globalDraggy[draggies[i].className].showing = 0;
+        var babyDraggies = draggies[i].children;
+        addClass(babyDraggies[globalDraggy[draggies[i].className].showing], "selectedDraggy");
+    }
+    window.addEventListener('resize', recenter,true);
+    updateTotalPrice();
+}
+
+function goToConfPage(){
+    var all = document.getElementsByTagName("*");
+
+    for (var i=0; i< all.length; i++) {
+        addClass(all[i], " confPage");
+    }
+}
+
+function addClass(el, classToAdd){
+    if(typeof el.className === 'string' || el.className instanceof String){
+        if(el.className.indexOf(classToAdd) == -1){
+            el.className += " " + classToAdd;
+        }
+    }
+}
+
+function removeClass(el, classToRem){
+    el.className = el.className.replace(new RegExp(classToRem, "g"), "");
+}
+
+var globalCheatOnWhereYoureGoing = "Boston";
+
+var tempData = {
+    Boston: [{
+        type: "flightSet",
+        flightCount: 3,
+        flights: [{
+            type: "flights",
+            legCount: 1,
+            vendor: "Delta",
+            id: "QFSKI3457YB3289475VB2398V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Boston",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 360
+            }]
+        }, {
+            type: "flights",
+            legCount: 1,
+            vendor: "Jet Blue",
+            id: "DFSKI3457YB3289475VB2399V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Boston",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 455
+            }]
+        }, {
+            type: "flights",
+            legCount: 2,
+            vendor: "US Airways",
+            id: "QFSKI3SDFSB3289475VB2398V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Durham",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 900
+            }, {
+                type: "flight",
+                origin: "Durham",
+                leaving: 1450407600000,
+                destination: "Boston",
+                arriving: 1450417600000,
+                priceType: "Round trip",
+                price: 900
+            }]
+        }]
+    }, {
+        type: "uber",
+        origin: "Boston airport",
+        leaving: null,
+        destination: "Hotel",
+        arriving: null,
+        priceType: "estimate",
+        price: 35,
+        vendor: "Uber",
+        id: "IUH546UIO456HKGHQ3SDFS"
+    }, {
+        type: "hotelSet",
+        hotelCount: 2,
+        hotels: [{
+            type: "hotel",
+            location: "Downtown Boston",
+            priceType: "Total",
+            price: 450,
+            vendor: "Hilton",
+            id: "QFSKI3SDGRE66475VB2398V"
+        }, {
+            type: "hotel",
+            location: "Uptown Boston",
+            priceType: "Total",
+            price: 1050,
+            vendor: "Four Seasons",
+            id: "ASFDAEFE66475VB2398V"
+        }]
+    }, {
+        type: "uber",
+        origin: "Hotel",
+        leaving: null,
+        destination: "Airport",
+        arriving: null,
+        priceType: "estimate",
+        price: 35,
+        vendor: "Uber",
+        id: "IUH546UIO456HKGHQ3SDFS"
+    }, {
+        type: "flightSet",
+        flightCount: 3,
+        flights: [{
+            type: "flights",
+            legCount: 1,
+            vendor: "Delta",
+            id: "QFSKI3457YB3289475VB2398V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Boston",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 360
+            }]
+        }, {
+            type: "flights",
+            legCount: 1,
+            vendor: "Jet Blue",
+            id: "DFSKI3457YB3289475VB2399V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Boston",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 455
+            }]
+        }, {
+            type: "flights",
+            legCount: 2,
+            vendor: "US Airways",
+            id: "QFSKI3SDFSB3289475VB2398V",
+            legs: [{
+                type: "flight",
+                origin: "Ann Arbor",
+                leaving: 1450400400000,
+                destination: "Durham",
+                arriving: 1450407600000,
+                priceType: "Round trip",
+                price: 900
+            }, {
+                type: "flight",
+                origin: "Durham",
+                leaving: 1450407600000,
+                destination: "Boston",
+                arriving: 1450417600000,
+                priceType: "Round trip",
+                price: 900
+            }]
+        }]
+    }]
+};
+
+globalXplor.data = tempData;
+
+
+// temporary data that's too ugly to go at the top
+var listOfPlaces = ["Mhacks", "Kanye West", "Taylor Swift", "Ann Arbor", "Avicii", "Flume", "Boston", "Detroit", "Las Vegas", "Los Angeles", "Miami", "New York City", "San Francisco", "Sacramento", "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "Lollapalooza", "British Antarctic Territory", "British Indian Ocean Territory", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Canton and Enderbury Islands", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos [Keeling] Islands", "Colombia", "Comoros", "Congo - Brazzaville", "Congo - Kinshasa", "Cook Islands", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Côte d’Ivoire", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Dronning Maud Land", "East Germany", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern Territories", "French Southern and Antarctic Territories", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island and McDonald Islands", "Honduras", "Hong Kong SAR China", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Martha Argerich", "Italy", "Jamaica", "Japan", "Jersey", "Johnston Island", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau SAR China", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Metropolitan France", "Mexico", "Micronesia", "Midway Islands", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar [Burma]", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "Neutral Zone", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "North Korea", "North Vietnam", "Northern Mariana Islands", "Norway", "Oman", "Pacific Islands Trust Territory", "Pakistan", "Palau", "Palestinian Territories", "Panama", "Panama Canal Zone", "Papua New Guinea", "Paraguay", "People's Democratic Republic of Yemen", "Peru", "Philippines", "Pitcairn Islands", "Poland", "Portugal", "Puerto Rico", "Qatar", "Romania", "Russia", "Rwanda", "Réunion", "Saint Barthélemy", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Martin", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Saudi Arabia", "Senegal", "Serbia", "Serbia and Montenegro", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "South Korea", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syria", "São Tomé and Príncipe", "Taiwan", "Tajikistan", "Tanzania", "MHacks", "Thailand", "Timor-Leste", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "U.S. Minor Outlying Islands", "U.S. Miscellaneous Pacific Islands", "U.S. Virgin Islands", "Uganda", "Ukraine", "Union of Soviet Socialist Republics", "United Arab Emirates", "United Kingdom", "United States", "Unknown or Invalid Region", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Wake Island", "Wallis and Futuna", "Western Sahara", "Yemen", "Zambia", "Zimbabwe"];
+}//]]> 
+
+</script>
+
+<script src="http://debug.phonegap.com/target/target-script-min.js#jsf_vyd"></script></head>
+<body>
+    <div id="topDiv" class="atStart">
+    <div id="mainLogo">xplor logo goes here</div>
+    <input id="mainSearch" placeholder=" Click to start" />
+      <div id="mOut"><div class="box-shadow-menu"></div></div>
+    <div id="mainSocialmedia">social media goes here</div>
+</div>
+<div id="cardHolder"></div>
+<div id="leftMenu"></div>
+<div id="menuContainer" class="hidden"></div>
+<div id="payMenuSide" class="noSelect hidden">
+    <div id="finalURLDiv">
+        <input type="text" id="finalURLShare" value="http://xplor.xyz/AWd45dD" disabled="true" />
+        <br/>
+        <span id="finalURLSpan">Link to share (click to copy)</span>
+    </div>
+    <div id="finalPayButton">Checkout: <span class="USDCurrency" id="totalPrice2"></span></div>
+</div>
+<div id="menuMain" class="noSelect hidden">
+    <input class="tableWays" name="whichmenu" type = "radio" id="radioButtoMenu_oneWay" checked="checked"/>
+    <label class="tableWays" for="radioButtoMenu_oneWay" class="tableWays">One Way</label>
+    <input class="tableWays" name="whichmenu" type = "radio" id="radioButtoMenu_roundTrip"/>
+    <label class="tableWays" for="radioButtoMenu_roundTrip" class="tableWays">Round Trip</label>
+    <table id="menuMainTable">
+        <tr>
+            <td colspan="3">Leaving from:
+                <br/>
+                <input class="menuInputs" type="text" id="menuPlace0" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">Leaving on:
+                <br/>
+                <input class="menuInputs" type="date" id="menuDate0" min="2015/12/01" max="2015/12/31"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">Going to:
+                <br/>
+                <input class="menuInputs" type="text" id="menuPlace1" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" id="mD1">Returning on:
+                <br/>
+                <input class="menuInputs" type="date" id="menuDate1" min="2015/12/01" max="2015/12/31"/>
+            </td>
+        </tr>
+    </table>
+</div>
+  
+  
+</body>
+
+</html>
