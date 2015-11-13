@@ -5,4 +5,4 @@ I used over 8 APIs to process and represent data from third party source (Expedi
 
 Created MySQL database with Node.js and Python to implement an itinerary webpage
 
-Technical Languages: Python, Javascript, Node.js, SQL, HTML/CSS
+Technical Languages: Python, Javascript, Node.js, SQL, MySQL, HTML/CSS
