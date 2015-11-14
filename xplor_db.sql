@@ -64,6 +64,93 @@ INSERT INTO `flight_info` (`vendor`, `saleTotal`, `time`, `airline`, `departure_
 ('United Airlines', '506.60', '4:01', 'UA 311', '2015-11-20T09:12-05:00', '2015-11-20T10:39-07:00', 'DTW', 'DEN', 'WE8223HASD'),
 ('United Airlines', '506.60', '4:01', 'UA 282', '2015-11-20T11:14-07:00', '2015-11-20T12:55-08:00', 'DEN', 'SMF', 'WE8223HASD');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hotel_info`
+--
+
+CREATE TABLE `hotel_info` (
+  `HotelID` varchar(45) DEFAULT NULL,
+  `Name` varchar(80) DEFAULT NULL,
+  `location` varchar(50) DEFAULT NULL,
+  `TotalRate` varchar(45) DEFAULT NULL,
+  `CheckInDate` varchar(80) DEFAULT NULL,
+  `DetailsUrl` char(200) DEFAULT NULL,
+  `StarRating` varchar(70) DEFAULT NULL,
+  `Geo` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `hotel_info`
+--
+
+INSERT INTO `hotel_info` (`HotelID`, `Name`, `location`, `TotalRate`, `CheckInDate`, `DetailsUrl`, `StarRating`, `Geo`) VALUES
+('8377936', 'Stone Chalet Bed and Breakfast Inn and Event Center', 'Ann Arbor', '168.54', '2015-11-15', 'http://www.expedia.com/go/hotel/info/8377936/2015-11-15/2015-11-18?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '3.5', '42.268281,-83.722783'),
+('12078091', 'Residence Inn Ann Arbor Downtown', 'Ann Arbor', '198.69', '2015-11-21', 'http://www.expedia.com/go/hotel/info/12078091/2015-11-21/2015-11-24?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '3.0', '42.281451,-83.749748'),
+('1050440', 'Bell Tower Hotel', 'Ann Arbor', '217.77', '2015-11-16', 'http://www.expedia.com/go/hotel/info/1050440/2015-11-16/2015-11-19?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '2.5', '42.27942,-83.73963'),
+('26146', 'Boston Harbor Hotel', 'Boston', '265.53', '2015-11-27', 'http://www.expedia.com/go/hotel/info/26146/2015-11-27/2015-11-30?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '42.356159,-71.050789'),
+('21962', 'Four Seasons Hotel Boston', 'Boston', '484.98', '2015-11-23', 'http://www.expedia.com/go/hotel/info/21962/2015-11-23/2015-11-26?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '42.352317,-71.068525'),
+('2175117', 'Mandarin Oriental Boston', 'Boston', '509.30', '2015-11-25', 'http://www.expedia.com/go/hotel/info/2175117/2015-11-25/2015-11-28?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '42.348881,-71.08181'),
+('6505', 'Loews Regency San Francisco', 'San Francisco', '365.75', '2015-11-22', 'http://www.expedia.com/go/hotel/info/6505/2015-11-22/2015-11-25?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '37.792535,-122.400929'),
+('1321986', 'The St. Regis San Francisco', 'San Francisco', '415.09', '2015-11-23', 'http://www.expedia.com/go/hotel/info/1321986/2015-11-23/2015-11-26?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '37.78596,-122.40158'),
+('18200', 'The Fairmont San Francisco', 'San Francisco', '174.09', '2015-11-23', 'http://www.expedia.com/go/hotel/info/18200/2015-11-23/2015-11-26?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '37.79229,-122.41088'),
+('3016186', 'Mandarin Oriental, Las Vegas', 'Las Vegas', '236.69', '2015-11-30', 'http://www.expedia.com/go/hotel/info/3016186/2015-11-30/2015-12-03?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '36.105943,-115.173178'),
+('1184243', 'Wynn Las Vegas', 'Las Vegas', '158.77', '2015-11-22', 'http://www.expedia.com/go/hotel/info/1184243/2015-11-22/2015-11-25?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '36.127548,-115.167795'),
+('2223789', 'Encore at Wynn Las Vegas', 'Las Vegas', '167.14', '2015-11-22', 'http://www.expedia.com/go/hotel/info/2223789/2015-11-22/2015-11-25?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '36.12759,-115.16774'),
+('1705854', 'MGM Grand Detroit', 'Detroit', '257.71', '2015-11-22', 'http://www.expedia.com/go/hotel/info/1705854/2015-11-22/2015-11-25?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '4.5', '42.33231,-83.05784'),
+('1764738', 'MotorCity Casino Hotel', 'Detroit', '160.62', '2015-11-16', 'http://www.expedia.com/go/hotel/info/1764738/2015-11-16/2015-11-19?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '4.5', '42.33978,-83.06718'),
+('2232457', 'Caesars Windsor', 'Windsor', '118.51', '2015-11-16', 'http://www.expedia.com/go/hotel/info/2232457/2015-11-16/2015-11-19?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '4.0', '42.32081,-83.03461'),
+('12057', 'The Beverly Hills Hotel', 'Beverly Hills', '549.62', '2015-11-22', 'http://www.expedia.com/go/hotel/info/12057/2015-11-22/2015-11-25?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '34.081537,-118.412113'),
+('17768', 'The Peninsula Beverly Hills', 'Beverly Hills', '636.40', '2015-11-18', 'http://www.expedia.com/go/hotel/info/17768/2015-11-18/2015-11-21?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '34.06595,-118.411079'),
+('300', 'Four Seasons Los Angeles at Beverly Hills', 'Los Angeles', '427.70', '2015-11-22', 'http://www.expedia.com/go/hotel/info/300/2015-11-22/2015-11-25?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '34.072892,-118.389692'),
+('3253', 'The Lowell', 'New York', '688.26', '2015-11-14', 'http://www.expedia.com/go/hotel/info/3253/2015-11-14/2015-11-17?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '40.765866,-73.969103'),
+('856934', 'the Quin', 'New York', '313.32', '2015-11-22', 'http://www.expedia.com/go/hotel/info/856934/2015-11-22/2015-11-25?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '40.764263,-73.977069'),
+('25559', 'Loews Regency New York Hotel', 'New York', '363.92', '2015-11-22', 'http://www.expedia.com/go/hotel/info/25559/2015-11-22/2015-11-25?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '5.0', '40.764458,-73.968852'),
+('1189730', 'Amber House - Midtown Sacramento', 'Sacramento', '228.86', '2015-11-16', 'http://www.expedia.com/go/hotel/info/1189730/2015-11-16/2015-11-19?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '4.0', '38.57251,-121.47875'),
+('1040434', 'Inn & Spa at Parkside', 'Sacramento', '228.85', '2015-11-14', 'http://www.expedia.com/go/hotel/info/1040434/2015-11-14/2015-11-17?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '4.0', '38.5695,-121.5041'),
+('2201796', 'The Citizen Hotel, Autograph Collection', 'Sacramento', '188.92', '2015-11-26', 'http://www.expedia.com/go/hotel/info/2201796/2015-11-26/2015-11-29?NumRooms=1&NumAdult-Room1=2&tpid=1&eapid=0&langid=1033', '4.0', '38.58035,-121.49366');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uber`
+--
+
+CREATE TABLE `uber` (
+  `origin` varchar(50) DEFAULT NULL,
+  `distance` varchar(100) DEFAULT NULL,
+  `destination` varchar(100) DEFAULT NULL,
+  `price` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `uber`
+--
+
+INSERT INTO `uber` (`origin`, `distance`, `destination`, `price`) VALUES
+('Detroit Metropolitan Airport', '26.46', 'Stone Chalet Bed and Breakfast Inn and Event Center', '$31-39'),
+('Detroit Metropolitan Airport', '29.1', 'Residence Inn Ann Arbor Downtown', '$33-43'),
+('Detroit Metropolitan Airport', '27.69', 'Bell Tower Hotel', '$32-41'),
+('Logan International Airport', '4.72', 'Boston Harbor Hotel', '$26-30'),
+('Logan International Airport', '7.75', 'Four Seasons Hotel Boston', '$34-39'),
+('Logan International Airport', '8.39', 'Mandarin Oriental Boston', '$35-41'),
+('San Francisco International Airport', '14.64', 'Loews Regency San Francisco', '$30-39'),
+('San Francisco International Airport', '13.86', 'The St. Regis San Francisco', '$28-37'),
+('San Francisco International Airport', '14.29', 'The Fairmont San Francisco', '$30-38'),
+('Detroit Metropolitan Airport', '20.71', 'MGM Grand Detroit', '$26-33'),
+('Detroit Metropolitan Airport', '20.34', 'MotorCity Casino Hotel', '$25-32'),
+('Detroit Metropolitan Airport', '24.79', 'Caesars Windsor', '$29-38'),
+('Detroit Metropolitan Airport', '13.48', 'The Beverly Hills Hotel', '$23-30'),
+('Detroit Metropolitan Airport', '12.02', 'The Peninsula Beverly Hills', '$21-27'),
+('Detroit Metropolitan Airport', '13.53', 'Four Seasons Los Angeles at Beverly Hills', '$23-30'),
+('Detroit Metropolitan Airport', '17.38', 'The Lowell', '$52-70'),
+('Detroit Metropolitan Airport', '17.69', 'the Quin', '$54-72'),
+('Detroit Metropolitan Airport', '17.4', 'Loews Regency New York Hotel', '$52-70'),
+('Detroit Metropolitan Airport', '13.53', 'Amber House - Midtown Sacramento', '$18-24'),
+('Detroit Metropolitan Airport', '12.88', 'Inn & Spa at Parkside', '$17-22'),
+('Detroit Metropolitan Airport', '11.6', 'The Citizen Hotel, Autograph Collection', '$16-21');
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
