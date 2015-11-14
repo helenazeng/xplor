@@ -1,8 +1,16 @@
 var Uber = require('node-uber');
 
 var mysql      = require('mysql');
-request = require("request")
+request = require("request");
 var XMLHttpRequest = require('w3c-xmlhttprequest').XMLHttpRequest;
+
+
+var pool  = mysql.createPool({
+    host     : 'localhost',
+    user     : 'root',
+    password : 'mysql',
+    database : 'xplor_local'
+});
 
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -10,20 +18,6 @@ var connection = mysql.createConnection({
   password : 'mysql',
   database : 'xplor_local'
 });
-
-connection.connect();
-
- 
-var hotel_latitude = 'SELECT latitude FROM hotel_info';
-var hotel_longitude = 'SELECT longitude FROM hotel_info';
-connection.query(hotel_latitude, hotel_longitude, function(err, rows, fields) {
-    if (err) throw err;
-    for (var i in rows) {
-        var hotel_lat = rows[i].latitude;
-        var hotel_long = rows[i].longitude;
-    }
-});
-
 
 var uber = new Uber({
   client_id: '8k6fXvLhPy7gcCckWlwKMSS64dVyxtnT',
@@ -33,107 +27,45 @@ var uber = new Uber({
   name: 'uber_info'
 });
 
-ann arbor to DTW
-uber.estimates.price({ 
-  start_latitude: 42.365613, start_longitude: -71.009560, 
-  end_latitude: 42.356159, end_longitude: -71.050789
-}, function (err, res) {
-  if (err) console.error(err);
-  else
-    price = res.prices[0].estimate;
-    distance = res.prices[0].distance;
-    product_id = res.prices[0].product_id;
+connection.connect();
 
-    var post = {origin: "Logan International Airport", distance: distance, destination: "Boston Harbor Hotel", price: price, id: product_id};
-    var query = connection.query('INSERT INTO uber SET ?', post, function(err, result) {
-    if (err) {
-      throw err
+ 
+var hotel_geo = 'SELECT Geo FROM hotel_info';
+connection.query(hotel_geo, function(err, rows, fields) {
+    if (err) throw err;
+    for (var i in rows) {
+        console.log(rows[i].Geo);
     }
-  });
-  console.log(query.sql);
-  connection.end();
 });
+// no uber service in Las Vegas
+var airport_latitude = [42.216172, 42.365613, 37.621313, 42.216172, 33.941589,
+                               40.641311, 38.695085];
+var airport_longitude = [-83.355384, -71.009560, -122.378955, -83.355384, 
+                              -118.408530, -73.778139, -121.590065];
+var hotel_name = 'SELECT Name FROM hotel_info';
+connection.query(hotel_name, function(err, rows, fields) {
+  if (err) throw err;
+  uber.estimates.price({ 
+    for (var i in rows) {
 
-uber.estimates.price({ 
-  start_latitude: 42.365613, start_longitude: -71.009560, 
-  end_latitude: 42.352317, end_longitude: -71.068525
-}, function (err, res) {
-  if (err) console.error(err);
-  else
-    price = res.prices[0].estimate;
-    distance = res.prices[0].distance;
-    product_id = res.prices[0].product_id;
-
-    var post = {origin: "Logan International Airport", distance: distance, destination: "Four Seasons Hotel Boston", price: price, id: product_id};
-    var query = connection.query('INSERT INTO uber SET ?', post, function(err, result) {
-    if (err) {
-      throw err
     }
-  });
-  console.log(query.sql);
-  connection.end();
+      start_latitude: airport_latitude[i], start_longitude: airport_longitude[i], 
+      end_latitude: 38.58035, end_longitude: -121.49366
+    }, function (err, res) {
+      if (err) console.error(err); 
+      else
+        price = res.prices[0].estimate;
+        distance = res.prices[0].distance;
+        var airports = ["Detroit Metropolitan Airport", "Logan International Airport", "San Francisco International Airport", 
+                         "Detroit Metropolitan Airport", "Los Angeles International Airport",
+                        "John F. Kennedy International Airport", "Sacramento International Airport"];
+          var post = {origin: airports[i], distance: distance, destination: rows[i].Name, price: price};
+          var query = connection.query('INSERT INTO uber SET ?', post, function(err, result) {
+          if (err) {
+            throw err
+          }
+        });
+      console.log(query.sql);
+      connection.end();
+    });
 });
-
-uber.estimates.price({ 
-  start_latitude: 42.365613, start_longitude: -71.009560, 
-  end_latitude: 42.348881, end_longitude: -71.08181
-}, function (err, res) {
-  if (err) console.error(err);
-  else
-    price = res.prices[0].estimate;
-    distance = res.prices[0].distance;
-    product_id = res.prices[0].product_id;
-
-    var post = {origin: "Logan International Airport", distance: distance, destination: "Mandarin Oriental Boston", price: price, id: product_id};
-    var query = connection.query('INSERT INTO uber SET ?', post, function(err, result) {
-    if (err) {
-      throw err
-    }
-  });
-  console.log(query.sql);
-  connection.end();
-});
-
-uber.estimates.price({ 
-  start_latitude: 42.365613, start_longitude: -71.009560, 
-  end_latitude: 42.353266, end_longitude: -71.063156
-}, function (err, res) {
-  if (err) console.error(err);
-  else
-    price = res.prices[0].estimate;
-    distance = res.prices[0].distance;
-    product_id = res.prices[0].product_id;
-
-    var post = {origin: "Logan International Airport", distance: distance, destination: "The Ritz-Carlton, Boston Common", price: price, id: product_id};
-    var query = connection.query('INSERT INTO uber SET ?', post, function(err, result) {
-    if (err) {
-      throw err
-    }
-  });
-  console.log(query.sql);
-  connection.end();
-});
-
-uber.estimates.price({ 
-  start_latitude: 42.365613, start_longitude: -71.009560, 
-  end_latitude: 42.354216, end_longitude: -71.05245 
-}, function (err, res) {
-  if (err) console.error(err);
-  else
-    price = res.prices[0].estimate;
-    distance = res.prices[0].distance;
-    product_id = res.prices[0].product_id;
-
-    var post = {origin: "Logan International Airport", distance: distance, destination: "InterContinental Boston", price: price, id: product_id};
-    var query = connection.query('INSERT INTO uber SET ?', post, function(err, result) {
-    if (err) {
-      throw err
-    }
-  });
-  console.log(query.sql);
-  connection.end();
-});
-
-
-
-
