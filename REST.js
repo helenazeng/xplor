@@ -11,36 +11,49 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
     router.get("/",function(req,res) {
         res.json({"Message" : "Hello World !"});
     });
-
-    router.get("/flight",function(req,res) {
-        connection.query("SELECT * FROM flight_info",function(err,rows) {
+    router.get("/api",function(req,res) {
+        connection.query("SELECT * FROM Everything",function(err,rows) {
             if (err) {
                 res.json({"Error" : true, "Message" : "Error executing MySQL query"});
             } else {
-                res.json({"Message" : "Success", "flights" : rows});
-            }
-        });
-    });
+                // A2, Boston, San Francisco, NYC, Detroit, Las Vegas, Miami, Sacramento
+                var cities = ["Boston", "Ann Arbor", "San Francisco", "New York", "Detroit", "Las Vegas", "Miami", "Sacramento"];
+                var flights_dest = ["BOS", "DTW", "SFO", "JFK", "DTW", "LAS", "MIA", "SMF"];
+                var uber_origin = ["Logan International Airport", "Detroit Metropolitan Airport", "San Francisco International Airport", 
+                         "John F. Kennedy International Airport", "Detroit Metropolitan Airport", "Los Angeles International Airport",
+                        "", "Sacramento International Airport"];
+                var itinerary = {};
+                var flights = [];
+                var ubers_hotel = [];
+                var hotels = [];
+                for (var j = 0; j < 8; j++) {
+                    for (var i in rows) {
+                        // itinerary["type"] = "flightSet";
+                        itinerary["flightCount"] = i;
+                        itinerary["city"] = cities[j];
+                        if (rows[i].destination == flights_dest[j]) {
+                            flights.push(rows[i]);
+                        }
+                        else if (rows[i].origin == uber_origin[j]) {
+                            ubers_hotel.push(rows[i]);
+                        }
+                        else if (rows[i].location == cities[j]) {
+                            hotels.push(rows[i]);
 
-    router.get("/hotel",function(req,res) {
-        connection.query("SELECT * FROM hotel_info",function(err,rows) {
-            if (err) {
-                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
-            } else {
-                res.json({"Message" : "Success", "hotels" : rows});
+                        }
+                    
+                }
+                itinerary["flights"] = flights;
+                itinerary["ubers_hotel"] = ubers_hotel;
+                itinerary["hotels"] = hotels;
+                res.json({"itinerary": itinerary});
+                
+                
+                // res.json({rows});
+                }
             }
         });
     });
-    router.get("/uber",function(req,res) {
-        connection.query("SELECT * FROM uber",function(err,rows){ 
-            if (err) {
-                res.json({"Error" : true, "Message" : "Error executing MySQL query"});
-            } else {
-                res.json({"Message" : "Success", "uber_price" : rows});
-            }
-        });
-    });
-
     
 }
 
