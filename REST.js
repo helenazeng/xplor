@@ -69,12 +69,17 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
                         uber = "Amber House - Midtown Sacramento";
                     }
                     if (rows[i].destination == airport || rows[i].origin == airport) {
+                        // itinerary[request_city][vendor] = rows[i].vendor;
                         flights.push(rows[i]);
+
                     }
                     else if (rows[i].destination == uber) {
                         ubers_hotel.push(rows[i]);
                     }
                     else if (rows[i].location == request_city) {
+                        if (rows[i].DetailsUrl != "") {
+                            delete rows[i].DetailsUrl;
+                        }
                         hotels.push(rows[i]);
 
                     }
@@ -83,11 +88,12 @@ REST_ROUTER.prototype.handleRoutes = function(router,connection,md5) {
                 itinerary[request_city]["flights"] = flights;
                 itinerary[request_city]["ubers_hotel"] = ubers_hotel;
                 itinerary[request_city]["hotels"] = hotels;
-                
+                res.setHeader("Access-Control-Allow-Origin", "*");
+                res.send(JSON.stringify(itinerary));
                 
                 // res.json({rows});
                 // }
-                res.json({"itinerary": itinerary});
+                // res.json({"itinerary": itinerary});
             }
         });
     });
